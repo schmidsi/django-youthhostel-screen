@@ -1,0 +1,9 @@
+[submodule "lib/django"]
+	path = lib/django
+	url = git://github.com/django/django.git
+[submodule "lib/feincms"]
+	path = lib/feincms
+	url = git://github.com/matthiask/feincms.git
+[submodule "lib/feinheit"]
+	path = lib/feinheit
+	url = git@github.com:feinheit/feinheit.git
