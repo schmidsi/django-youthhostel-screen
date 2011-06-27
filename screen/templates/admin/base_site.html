@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}fhadmin/fhadmin.css" />
+{% endblock %}
+
+{% block title %}{{ title }} | {% trans 'FeinCMS Verwaltung' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans 'FeinCMS Verwaltung' %}</h1>
+{% endblock %}
+{% block userlinks %}
+/&nbsp;<a href="/rosetta/">Rosetta</a> /&nbsp;
+{{ block.super }}
+{% endblock %}
+
+{% block nav-global %}
+<div id="quickpanel">
+    {% include "admin/group_list.html" %}
+    <br style="clear:both" />
+</div>
+{% endblock %}
