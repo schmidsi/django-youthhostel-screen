@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="NOFOLLOW, NOINDEX" />
+    
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/boilerplate.css" />
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/global.css" />
+    
+    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker&v1' rel='stylesheet' type='text/css'>
+    
+    <title>YouthHostel.ch Info Screen</title>
+<body>
+    <div id="container">
+        <div id="weather">
+            {% block weather %}
+            <img src="{{ MEDIA_URL }}img/35.png" />
+            {% endblock weather %}
+        </div>
+        <div id="announcements">
+            {% block announcements %}
+            <div class="info">
+                Bitte die Bettwäsche zum waschen bereitlegen.
+            </div>
+            {% endblock %}
+        </div>
+        <div id="content">
+            {% block content %}
+            <div class="slideshow">
+                <div class="image" style="background-image: url({{ MEDIA_URL }}img/r1.jpg)"></div>
+            </div>
+            {% endblock content %}
+        </div>
+        <div id="ticker">
+            {% block ticker %}
+            <ul class="ticker">
+                <li>Die Gruppe Grün überragt Grupper Grau gemäss neusten Studien aus Kasachstan</li>
+                <li>Fritz Müller wird mit dem Ehrenpreis der Müller Stiftung ausgezeichnet</li>
+                <li>FCA bezwingt FCX bei einem spannenden Spiel</li>
+            </ul>
+            {% endblock ticker %}
+        </div>
+    </div>
+</body>
+</html>

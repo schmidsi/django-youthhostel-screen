@@ -19,6 +19,7 @@ Page.register_templates({
         ),
     })
 
+Page.register_extensions('changedate','navigation', 'ct_tracker')
 Page.create_content_type(RichTextContent, regions=('main',), cleanse=False)
 Page.create_content_type(MediaFileContent, POSITION_CHOICES=(('default', _('default')),))
 Page.create_content_type(OembedContent, regions=('main',))

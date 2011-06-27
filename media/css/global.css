@@ -1,0 +1,53 @@
+/* BASIC LAYOUT */
+
+html, body {
+    color: white;
+    height: 100%;
+    overflow: hidden;
+    background-color: black;
+}
+
+div {
+
+}
+
+
+#container > div {
+    position: absolute;
+}
+
+
+/* STYLES */
+
+#announcements {
+    right: 0px;
+    /*font-family: 'Permanent Marker', arial, serif;*/
+    font-size: 3em;
+    line-height: 1em;
+}
+
+#announcements .info {
+    color: yellow;
+}
+
+#ticker {
+    bottom: 0px;
+}
+
+#weather img {
+    height: 30%;
+    width: 30%;
+}
+
+#content {
+    top: 10%;
+    bottom: 10%;
+    left: 10%;
+    right: 10%;
+    overflow: hidden;
+}
+
+.slideshow, .slideshow div.image {
+    height: 100%;
+    width: 100%;
+}
