@@ -5,6 +5,8 @@ html, body {
     height: 100%;
     overflow: hidden;
     background-color: black;
+    font-family: 'Akkurat-LightRegular', Arial, sans-serif;
+    font-size: 20px;
 }
 
 div {
@@ -21,18 +23,81 @@ div {
 
 #announcements {
     right: 0px;
-    /*font-family: 'Permanent Marker', arial, serif;*/
-    font-size: 3em;
+    font-family: 'BodoniStdPosterItalic', georgia, serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.5em;
     line-height: 1em;
+    background-color: #5d8dcb; /* PANTONE 279U */
+    padding: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#announcements:after {
+    content:"";
+    position:absolute;
+    bottom:-15px;
+    left:50px;
+    border-width:15px 15px 0;
+    border-style:solid;
+    border-color:#5d8dcb transparent;
+    display:block; 
+    width:0;
 }
 
 #announcements .info {
-    color: yellow;
+    color: white;
+}
+
+.slideshow {
+    position: relative;
+}
+
+.slideshow div.image {
+    background-color: white;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-size: contain;
+    background-position: center;
+    height: 100%;
+    width: 100%;
 }
 
 #ticker {
-    bottom: 0px;
+    bottom: 0.1em;
+    overflow: hidden;
+    width: 1000%;
 }
+
+ul.ticker {
+    position: relative;
+    list-style-type: square;
+    left: 10%;
+    -moz-animation-duration: 20s;
+    -moz-animation-name: ticker;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+
+}
+
+.ticker li {
+    float: left;
+    padding-right: 2em;
+    padding-left: 1em;
+}
+
+@-moz-keyframes ticker {
+    from {
+        left: 10%;
+    }
+    to {
+        left: -20%;
+    }
+}
+
 
 #weather img {
     height: 30%;
@@ -40,10 +105,10 @@ div {
 }
 
 #content {
-    top: 10%;
-    bottom: 10%;
-    left: 10%;
-    right: 10%;
+    top: 15%;
+    bottom: 15%;
+    left: 5%;
+    right: 5%;
     overflow: hidden;
 }
 

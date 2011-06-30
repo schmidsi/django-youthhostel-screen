@@ -5,9 +5,9 @@
     <meta name="robots" content="NOFOLLOW, NOINDEX" />
     
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/boilerplate.css" />
+    <link rel="stylesheet" href="{{ MEDIA_URL }}fonts/akkurat.css" />
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/bodoni.css" />
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/global.css" />
-    
-    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker&v1' rel='stylesheet' type='text/css'>
     
     <title>YouthHostel.ch Info Screen</title>
 <body>
@@ -27,14 +27,19 @@
         <div id="content">
             {% block content %}
             <div class="slideshow">
-                <div class="image" style="background-image: url({{ MEDIA_URL }}img/r1.jpg)"></div>
+                <div class="image" style="background-image: url({{ MEDIA_URL }}img/dummys/innenraum.jpeg)"></div>
+                <div class="image" style="background-image: url({{ MEDIA_URL }}img/dummys/innenraump2.jpeg)"></div>
+                <div class="image" style="background-image: url({{ MEDIA_URL }}img/dummys/scuol.jpeg)"></div>
+                <div class="image" style="background-image: url({{ MEDIA_URL }}img/dummys/stalban-lobby.jpeg)"></div>
+                <div class="image" style="background-image: url({{ MEDIA_URL }}img/dummys/turtmannhuette.jpeg)"></div>
+                <div class="image" style="background-image: url({{ MEDIA_URL }}img/dummys/zuerich.jpeg)"></div>
             </div>
             {% endblock content %}
         </div>
         <div id="ticker">
             {% block ticker %}
             <ul class="ticker">
-                <li>Die Gruppe Grün überragt Grupper Grau gemäss neusten Studien aus Kasachstan</li>
+                <li>Die Gruppe Grün überragt Gruppe Grau gemäss neusten Studien aus Kasachstan</li>
                 <li>Fritz Müller wird mit dem Ehrenpreis der Müller Stiftung ausgezeichnet</li>
                 <li>FCA bezwingt FCX bei einem spannenden Spiel</li>
             </ul>
