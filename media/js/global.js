@@ -1,0 +1,4 @@
+$(function(){
+    $('.simplegallery').screenSlide();
+});
+ 

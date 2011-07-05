@@ -51,17 +51,29 @@ div {
     color: white;
 }
 
-.slideshow {
+.simplegallery {
     position: relative;
 }
 
-.slideshow div.image {
-    background-color: white;
+.simplegallery div.image {
+    background-color: black;
     position: absolute;
     top: 0px;
     left: 0px;
     background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    
+    -moz-transition: opacity 1s ease-in;
+}
+.simplegallery div.image.show {
+    opacity: 1.0;
+}
+
+.simplegallery, .simplegallery div.image {
     height: 100%;
     width: 100%;
 }
@@ -112,7 +124,3 @@ ul.ticker {
     overflow: hidden;
 }
 
-.slideshow, .slideshow div.image {
-    height: 100%;
-    width: 100%;
-}

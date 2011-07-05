@@ -8,6 +8,9 @@ from feincms.content.template.models import TemplateContent
 from feincms.content.medialibrary.models import MediaFileContent
 
 from feinheit.external.contents import OembedContent
+from feinheit.simplegallery.contents import SimpleGalleryContent
+
+from contents import AnnouncementContent
 
 Page.register_templates({
     'title': 'Standard Screen',
@@ -21,7 +24,9 @@ Page.register_templates({
 
 Page.register_extensions('changedate','navigation', 'ct_tracker')
 Page.create_content_type(RichTextContent, regions=('main',), cleanse=False)
-Page.create_content_type(MediaFileContent, POSITION_CHOICES=(('default', _('default')),))
+Page.create_content_type(MediaFileContent, regions=('main',), POSITION_CHOICES=(('default', _('default')),))
 Page.create_content_type(OembedContent, regions=('main',))
-Page.create_content_type(TemplateContent, regions=('main', 'ticker', 'announcements',))
+#Page.create_content_type(TemplateContent, regions=('main',))
 Page.create_content_type(RawContent, regions=('main',))
+Page.create_content_type(SimpleGalleryContent, regions=('main',))
+Page.create_content_type(AnnouncementContent, regions=('announcements',))
