@@ -110,12 +110,6 @@ ul.ticker {
     }
 }
 
-
-#weather img {
-    height: 30%;
-    width: 30%;
-}
-
 #content {
     top: 15%;
     bottom: 15%;
@@ -124,3 +118,13 @@ ul.ticker {
     overflow: hidden;
 }
 
+.weather-widget {
+    font-size: 0.8em;
+    line-height: 1.2em;
+}
+
+.weather-forecast, .weather-today {
+    width: 8%;
+    float: left;
+    margin-right: 1em;
+}
