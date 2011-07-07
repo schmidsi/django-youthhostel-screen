@@ -1,4 +1,5 @@
 $(function(){
-    $('.simplegallery').screenSlide();
+    $('.simplegallery').screenSlide({'visible' : 11000});
+    $('.ticker').screenSlide({'visible' : 8000});
 });
  
