@@ -32,11 +32,7 @@
         </div>
         <div id="ticker">
             {% block ticker %}
-            <ul class="ticker">
-                <li>Die Gruppe Grün überragt Gruppe Grau gemäss neusten Studien aus Kasachstan</li>
-                <li>Fritz Müller wird mit dem Ehrenpreis der Müller Stiftung ausgezeichnet</li>
-                <li>FCA bezwingt FCX bei einem spannenden Spiel</li>
-            </ul>
+                {% feincms_render_region feincms_page "ticker" request %}
             {% endblock ticker %}
         </div>
     </div>

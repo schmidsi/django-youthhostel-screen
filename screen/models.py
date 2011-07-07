@@ -7,7 +7,7 @@ from feincms.content.richtext.models import RichTextContent
 from feincms.content.template.models import TemplateContent
 from feincms.content.medialibrary.models import MediaFileContent
 
-from feinheit.external.contents import OembedContent
+from feinheit.external.contents import OembedContent, FeedContent
 from feinheit.simplegallery.contents import SimpleGalleryContent
 
 from contents import AnnouncementContent
@@ -30,3 +30,4 @@ Page.create_content_type(OembedContent, regions=('main',))
 Page.create_content_type(RawContent, regions=('main',))
 Page.create_content_type(SimpleGalleryContent, regions=('main',))
 Page.create_content_type(AnnouncementContent, regions=('announcements',))
+Page.create_content_type(FeedContent, regions=('ticker',))
