@@ -3,6 +3,7 @@
 from django.db import models
 from django.template.loader import render_to_string
 
+
 class AnnouncementContent(models.Model):
     announcement = models.CharField('Announcement', max_length=200)
     

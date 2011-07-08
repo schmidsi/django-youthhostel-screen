@@ -11,6 +11,7 @@ from feinheit.external.contents import OembedContent, FeedContent
 from feinheit.simplegallery.contents import SimpleGalleryContent
 
 from contents import AnnouncementContent
+from extensions import content_timing_extension
 
 Page.register_templates({
     'title': 'Standard Screen',
@@ -19,8 +20,12 @@ Page.register_templates({
         ('main', _('Main content area')),
         ('ticker', _('News ticker'), 'inherited'),
         ('announcements', _('Announcements'), 'inherited'),
+        ('inactive', _('Inactive')),
         ),
     })
+
+content_timing_extension(RawContent, RichTextContent, TemplateContent, 
+                         MediaFileContent, OembedContent, SimpleGalleryContent, AnnouncementContent)
 
 Page.register_extensions('changedate','navigation', 'ct_tracker')
 Page.create_content_type(RichTextContent, regions=('main',), cleanse=False)
