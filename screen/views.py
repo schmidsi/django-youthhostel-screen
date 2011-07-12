@@ -7,10 +7,14 @@ from feincms.module.page.models import Page
 
 def random_content(request, path):
     region = request.GET.get('region', 'main')
+    last = request.GET.get('last', None)
     
     page = Page.objects.best_match_for_path(path, raise404=True)
     
     contents = getattr(page.content, region)
+    
+    if last != None:
+        contents.pop(int(last))
     
     total_prio = 0
     for content in contents:
