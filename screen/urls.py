@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     #url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     #url(r'^feinheit/', include('feinheit.urls')),
     
-    url('^ajax/(?P<path>.*)/', 'screen.views.random_content'),
+    url('^ajax(?P<path>.*)/', 'screen.views.random_content'),
 )
 
 #urlpatterns += patterns('django.views.generic.simple',

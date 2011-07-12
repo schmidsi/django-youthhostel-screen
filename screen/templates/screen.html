@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/bodoni.css" />
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/global.css" />
     
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/slideshow.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/global.js"></script>
+    
     <title>YouthHostel.ch Info Screen</title>
 <body>
     <div id="container">
@@ -25,9 +30,10 @@
             </div>
             {% endblock %}
         </div>
-        <div id="content">
+        <div id="content" data-currentcontent="-1">
             {% block content %}
-                {% feincms_render_region feincms_page "main" request %}
+                {# feincms_render_region feincms_page "main" request #}
+                <div class="dummy"></div>
             {% endblock content %}
         </div>
         <div id="ticker">
@@ -37,8 +43,5 @@
         </div>
     </div>
     
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/slideshow.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/global.js"></script>
 </body>
 </html>

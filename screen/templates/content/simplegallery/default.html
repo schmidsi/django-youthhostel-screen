@@ -1,0 +1,8 @@
+<div class="simplegallery" data-duration="{{ content.duration }}" data-id="{{ content.ordering }}">
+    {% for image in images %}
+        <div class="image" style="background-image: url({{ image.get_absolute_url }})"></div>
+    {% endfor %}
+</div>
+<script type="text/javascript">
+    $('.simplegallery').screenSlide({'visible' : 11000});
+</script>

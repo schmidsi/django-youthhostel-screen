@@ -78,12 +78,17 @@ div {
     width: 100%;
 }
 
+.richtext {
+    text-align: center;
+    font-size: 1.5em;
+}
+
 
 #ticker {
     bottom: 0.1em;
     overflow: hidden;
     width: 100%;
-    height: 4em;
+    height: 4.5em;
 }
 
 ul.ticker {
@@ -136,6 +141,25 @@ ul.ticker {
     left: 5%;
     right: 5%;
     overflow: hidden;
+    position: relative;
+    display: -moz-box;
+    -moz-box-pack: center;
+    -moz-box-align: center;
+}
+
+#content > div.next {
+    opacity: 0;
+}
+
+#content > div {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    opacity: 1;
+    
+    -moz-transition: all 0.5s ease-in;
 }
 
 .weather-widget {
