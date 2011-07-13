@@ -198,8 +198,8 @@ INSTALLED_APPS = (
 
 LANGUAGES = (
     ('de', 'German'),
-    ('fr', 'French'),
-    ('en', 'English'),
+    #('fr', 'French'),
+    #('en', 'English'),
 )
 
 FEINCMS_ADMIN_MEDIA = '/static/feincms/'

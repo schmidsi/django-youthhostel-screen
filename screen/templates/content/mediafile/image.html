@@ -1,0 +1,17 @@
+<div class="image" data-duration="{{ content.duration }}" data-id="{{ content.ordering }}" style="background-image: url({{ content.mediafile.file.url }})">
+    {% if image.translation.caption or image.translation.description or image.copyright %}
+    <div class="description">
+        {% if image.translation.caption %}
+        <h2>{{ image.translation.caption }}</h2>
+        {% endif %}
+        {% if image.translation.description or image.copyright %}
+        <p>
+            {{ image.translation.description }}
+            <span class="copyright">
+                © {{ image.copyright }}
+            </span>
+        </p>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>

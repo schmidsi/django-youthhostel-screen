@@ -9,7 +9,8 @@
         <div class="weather-forecast">
             <span class="day">{{ forecast.day }}</span>
             <img src="http://www.google.com/ig/images/weather/{{ forecast.icon }}" />
-            <span class="temperature">{{ forecast.high }}° <br /> ({{ forecast.low }}°) </span>
+            <span class="temperature">{{ forecast.high }}°</span> <br />
+            <span class="humidity"> {{ forecast.low }}° </span>
         </div>
     {% endfor %}
     <br clear="both" />
