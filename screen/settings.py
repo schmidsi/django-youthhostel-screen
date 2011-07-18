@@ -61,7 +61,7 @@ if 'runserver' in sys.argv:
     """
 else:
     LOCAL_DEV = False
-    DEBUG = False
+    DEBUG = True
 
 
 GOOGLE_ANALYTICS = 'UA-xxxxxxx-xx'
