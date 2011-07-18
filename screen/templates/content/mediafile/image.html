@@ -1,4 +1,5 @@
-<div class="image" data-duration="{{ content.duration }}" data-id="{{ content.ordering }}" style="background-image: url({{ content.mediafile.file.url }})">
+{% load feincms_thumbnail %}
+<div class="image" data-duration="{{ content.duration }}" data-id="{{ content.ordering }}" style="background-image: url({{ content.mediafile.file.name|thumbnail:"1024x2000" }})">
     {% if image.translation.caption or image.translation.description or image.copyright %}
     <div class="description">
         {% if image.translation.caption %}
