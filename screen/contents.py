@@ -3,6 +3,7 @@
 from django.db import models
 from django.template.loader import render_to_string
 
+
 class AnnouncementContent(models.Model):
     announcement = models.CharField('Announcement', max_length=200)
     
@@ -12,4 +13,4 @@ class AnnouncementContent(models.Model):
         verbose_name_plural = u'Ankündigungen'
     
     def render(self, **kwargs):
-        return self.announcement
+        return render_to_string('content/announcements/default.html', {'content' : self})

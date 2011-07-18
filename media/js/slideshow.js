@@ -33,9 +33,6 @@
                     data.nextItem = data.items.first();
                 }
                 
-                console.log(data.currentItem.css('backgroundImage'), 
-                            data.nextItem.css('backgroundImage'));
-                
                 data.currentItem.removeClass('show');
                 data.nextItem.addClass('show');
                 data.currentItem = data.nextItem;

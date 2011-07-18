@@ -15,6 +15,9 @@ urlpatterns = patterns('',
     #url(r'^i18n/', include('django.conf.urls.i18n')),   
     #url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     #url(r'^feinheit/', include('feinheit.urls')),
+    
+    url('^ajax/weather/', 'screen.views.weather'),
+    url('^ajax(?P<path>.*)/', 'screen.views.get_region'),
 )
 
 #urlpatterns += patterns('django.views.generic.simple',

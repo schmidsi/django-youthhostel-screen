@@ -1,0 +1,24 @@
+<div class="simplegallery" data-duration="{{ content.duration }}" data-id="{{ content.ordering }}">
+    {% for image in images %}
+        <div class="image" style="background-image: url({{ image.get_absolute_url }})">
+            {% if image.translation.caption or image.translation.description or image.copyright %}
+            <div class="description">
+                {% if image.translation.caption %}
+                <h2>{{ image.translation.caption }}</h2>
+                {% endif %}
+                {% if image.translation.description or image.copyright %}
+                <p>
+                    {{ image.translation.description }}
+                    <span class="copyright">
+                        © {{ image.copyright }}
+                    </span>
+                </p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+<script type="text/javascript">
+    $('.simplegallery').screenSlide({'visible' : 11000});
+</script>
