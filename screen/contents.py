@@ -13,4 +13,4 @@ class AnnouncementContent(models.Model):
         verbose_name_plural = u'Ankündigungen'
     
     def render(self, **kwargs):
-        return self.announcement
+        return render_to_string('content/announcements/default.html', {'content' : self})
