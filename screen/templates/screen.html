@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/boilerplate.css" />
     <link rel="stylesheet" href="{{ MEDIA_URL }}fonts/akkurat.css" />
-    <link rel="stylesheet" href="{{ MEDIA_URL }}css/bodoni.css" />
+    <link rel="stylesheet" href="{{ MEDIA_URL }}fonts/bodoni.css" />
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/global.css" />
     
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
@@ -17,7 +17,7 @@
     
     <title>YouthHostel.ch Info Screen</title>
 <body>
-    <div id="container">
+    <div id="container" data-path={{ feincms_page.get_absolute_url }}>
         <div id="weather">
             {% block weather %}
                 {% weather_widget 'basel,switzerland' %}
@@ -25,9 +25,7 @@
         </div>
         <div id="announcements">
             {% block announcements %}
-            <div class="info">
-                {% feincms_render_content feincms_page.content.announcements.0 request %}
-            </div>
+                <div class="dummy"></div>
             {% endblock %}
         </div>
         <div id="content" data-currentcontent="-1">
