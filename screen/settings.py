@@ -203,7 +203,7 @@ LANGUAGES = (
 )
 
 FEINCMS_ADMIN_MEDIA = '/static/feincms/'
-TINYMCE_JS_URL = '/static/tinymce/tiny_mce.js'
+TINYMCE_JS_URL = '/media/lib/tiny_mce/tiny_mce.js'
 FEINCMS_RICHTEXT_INIT_CONTEXT  = {
     'TINYMCE_JS_URL': TINYMCE_JS_URL,
     'TINYMCE_CONTENT_CSS_URL': None,
