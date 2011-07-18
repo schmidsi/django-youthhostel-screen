@@ -1,6 +1,7 @@
+{% load feincms_thumbnail %}
 <div class="simplegallery" data-duration="{{ content.duration }}" data-id="{{ content.ordering }}">
     {% for image in images %}
-        <div class="image" style="background-image: url({{ image.get_absolute_url }})">
+        <div class="image" style="background-image: url({{ image.file.name|thumbnail:"1024x2000" }})">
             {% if image.translation.caption or image.translation.description or image.copyright %}
             <div class="description">
                 {% if image.translation.caption %}
