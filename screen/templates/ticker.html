@@ -1,7 +1,7 @@
 <ul class="ticker">
     {% for entry in entries %}
         <li>
-            {{ entry.summary }}
+            {{ entry.summary|trucatewords:35 }}
             <span class="copyright">{{ entry.rights }}</span>
             <span class="date">
                 {% with entry.updated_parsed as t %}
