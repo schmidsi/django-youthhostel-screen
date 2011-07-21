@@ -1,0 +1,75 @@
+2011-06-27 16:11:20,050 - django.request - WARNING - Not Found: /favicon.ico/
+2011-06-27 16:11:20,080 - django.request - WARNING - Not Found: /favicon.ico/
+2011-07-05 17:05:09,737 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 17:05:10,809 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 17:05:11,062 - django.request - WARNING - Not Found: /favicon.ico/
+2011-07-05 17:05:11,083 - django.request - WARNING - Not Found: /favicon.ico/
+2011-07-05 17:05:23,935 - django.request - WARNING - Not Found: /favicon.ico/
+2011-07-05 17:06:46,715 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 17:06:46,839 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 17:07:21,315 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 17:07:21,472 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 17:10:37,735 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 17:10:37,796 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 17:11:04,187 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 17:11:04,294 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 17:11:34,795 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 17:11:34,902 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 17:17:57,556 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 17:17:57,621 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 17:55:58,282 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 17:55:58,400 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 18:28:53,716 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 18:28:53,777 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 18:29:56,607 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 18:29:56,728 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 18:30:59,266 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 18:30:59,384 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 18:31:14,166 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 18:31:14,286 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 18:36:07,547 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 18:36:07,618 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:13:23,819 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:13:23,880 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:13:46,697 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:13:46,816 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:14:48,764 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:14:48,883 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:15:14,800 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:15:14,918 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:15:25,137 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:15:25,255 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:16:18,452 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:16:18,570 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:17:39,449 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:17:39,588 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:18:42,061 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:18:42,170 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:19:31,408 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:19:31,531 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:20:18,962 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:20:19,082 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:20:28,370 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:20:28,488 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:20:55,823 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:20:55,947 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:21:36,074 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:21:36,192 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:22:00,858 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:22:00,982 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:22:44,108 - django.request - WARNING - Not Found: /media/img/dummys/innenraump2.jpeg
+2011-07-05 19:22:55,722 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 19:29:15,645 - django.request - WARNING - Forbidden (CSRF token missing or incorrect.): /feinheit/thumbnail/
+2011-07-05 19:33:36,075 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 22:12:22,643 - django.request - WARNING - Forbidden (CSRF token missing or incorrect.): /feinheit/thumbnail/
+2011-07-05 22:12:51,554 - django.request - WARNING - Forbidden (CSRF token missing or incorrect.): /feinheit/thumbnail/
+2011-07-05 22:13:03,868 - django.request - WARNING - Forbidden (CSRF token missing or incorrect.): /feinheit/thumbnail/
+2011-07-05 22:13:12,434 - django.request - WARNING - Forbidden (CSRF token missing or incorrect.): /feinheit/thumbnail/
+2011-07-05 22:13:18,584 - django.request - WARNING - Forbidden (CSRF token missing or incorrect.): /feinheit/thumbnail/
+2011-07-05 22:13:26,495 - django.request - WARNING - Forbidden (CSRF token missing or incorrect.): /feinheit/thumbnail/
+2011-07-05 22:19:43,017 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 22:20:11,867 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 22:20:30,200 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 22:21:17,310 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 22:30:52,398 - django.request - WARNING - Not Found: /media/css/bodoni.css
+2011-07-05 22:47:46,426 - django.request - WARNING - Not Found: /media/css/bodoni.css
