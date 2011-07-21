@@ -136,10 +136,11 @@ div.image {
 /* ticker */
 
 #ticker {
-    bottom: 0.1em;
+    bottom: 0em;
     overflow: hidden;
     width: 100%;
-    height: 4.5em;
+    height: 4.0em;
+    font-size: 1.3em;
 }
 
 ul.ticker {
