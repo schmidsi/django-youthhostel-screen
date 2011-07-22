@@ -1,6 +1,6 @@
 import random
 
-from datetime import datetime
+from datetime import datetime, time
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -51,15 +51,15 @@ def random_content(request, region, page):
             if content.boost_start <= now <= content.boost_end:
                 content.priority = content.boost_priority
         
-        if 6 <= now.hour < 13:
+        if 6 <= now.hour < 10:
             if content.morning:
                 total_prio += content.priority
                 filtered_contents.append(content)
-        elif 13 <= now.hour < 17:
+        elif time(10, 0) <= now.time() < time(13, 30):
             if content.afternoon:
                 total_prio += content.priority
                 filtered_contents.append(content)
-        elif 17 <= now.hour < 23:
+        elif time(13, 30) <= now.time() < time(23, 0):
             if content.evening:
                 total_prio += content.priority
                 filtered_contents.append(content)
