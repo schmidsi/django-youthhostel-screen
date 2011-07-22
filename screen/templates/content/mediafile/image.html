@@ -1,15 +1,15 @@
 {% load feincms_thumbnail %}
 <div class="image" data-duration="{{ content.duration }}" data-id="{{ content.ordering }}" style="background-image: url({{ content.mediafile.file.name|thumbnail:"1024x2000" }})">
-    {% if image.translation.caption or image.translation.description or image.copyright %}
+    {% if content.mediafile.translation.caption or content.mediafile.translation.description or content.mediafile.copyright %}
     <div class="description">
-        {% if image.translation.caption %}
-        <h2>{{ image.translation.caption }}</h2>
+        {% if content.mediafile.translation.caption %}
+        <h2>{{ content.mediafile.translation.caption }}</h2>
         {% endif %}
-        {% if image.translation.description or image.copyright %}
+        {% if content.mediafile.translation.description or content.mediafile.copyright %}
         <p>
-            {{ image.translation.description }}
+            {{ content.mediafile.translation.description }}
             <span class="copyright">
-                © {{ image.copyright }}
+                © {{ content.mediafile.copyright }}
             </span>
         </p>
         {% endif %}
