@@ -1,16 +1,14 @@
 <div class="weather-widget">
     <div class="weather-today">
         <span class="day">Today</span>
-        <img src="http://www.google.com/ig/images/weather/{{ weather.current.icon }}" />
+        <img class="weather-icon" src="{{ MEDIA_URL }}img/weather/{{ weather.current.icon|slice:":-4" }}.png" />
         <span class="temperature">{{ weather.current.temp }}°</span><br />
-        <span class="humidity">{{ weather.current.humidity }}</span>
     </div>
-    {% for forecast in weather.forecast %}
+    {% for forecast in weather.forecast|slice:"1:3" %}
         <div class="weather-forecast">
             <span class="day">{{ forecast.day }}</span>
-            <img src="http://www.google.com/ig/images/weather/{{ forecast.icon }}" />
+            <img class="weather-icon" src="{{ MEDIA_URL }}img/weather/{{ forecast.icon|slice:":-4" }}.png" />
             <span class="temperature">{{ forecast.high }}°</span> <br />
-            <span class="humidity"> {{ forecast.low }}° </span>
         </div>
     {% endfor %}
     <br clear="both" />

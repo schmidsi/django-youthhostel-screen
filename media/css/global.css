@@ -198,12 +198,23 @@ ul.ticker {
 }
 
 .weather-forecast, .weather-today {
-    width: 8%;
+    width: 18%;
     float: left;
     margin-right: 1em;
+    text-align: center;
 }
 
 .weather-widget .humidity {
     color: #aad6f3;
     font-size: 0.7em;
+}
+
+.weather-icon {
+    height: 90%;
+    width: 90%;
+}
+
+.temperature {
+    margin-top: -1em;
+    font-weight: bold;
 }
