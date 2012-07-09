@@ -125,6 +125,8 @@ INSTALLED_APPS = (
     'feincms.module.medialibrary',
     'feincms.module.page',
     'mptt',
+
+    'feincms_oembed',
 )
 
 LANGUAGES = (
