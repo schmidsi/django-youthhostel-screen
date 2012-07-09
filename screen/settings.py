@@ -2,77 +2,46 @@
 import sys, os
 
 APP_BASEDIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEBUG = any((cmd in sys.argv for cmd in ('runserver', 'shell', 'dbshell', 'sql', 'sqlall')))
 
 if APP_BASEDIR not in sys.path:
     sys.path.insert(0, APP_BASEDIR)
 
-execfile(os.path.join(APP_BASEDIR, 'secrets.py'))
+SECRET_KEY = '1ed5(ru*y4$^i4&h5*g5$6suvz8xne=)0ldu)tear$+ni7!-%r'
+APP_MODULE = 'screen'
 
 LOGGING = {
-    'version' : 1,
-    'formatters' : {
-        'console' : {
-            'format' : '%(levelname)s %(message)s'
-        },
-        'file' : {
-            'format' : '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
         }
     },
-    'handlers' : {
-        'console' : {
-            'level' : 'DEBUG',
-            'class' : 'logging.StreamHandler',
-            'formatter' : 'console'
-        },
-        'file' : {
-            'level' : 'INFO',
-            'class' : 'logging.handlers.RotatingFileHandler',
-            'formatter' : 'file',
-            'filename' : os.path.join(APP_BASEDIR, 'log/%s.log' % APP_MODULE),
-            'maxBytes' : 1000000,
-            'backupCount' : 10,
-        },
-            'mail_admins': {
+    'handlers': {
+        'mail_admins': {
             'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'include_html': True,
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
         }
     },
     'loggers': {
-        '' : {
-            'handlers': ['file', 'mail_admins'],
-            'propagate' : True,
-            'level' : 'INFO',
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
         },
-    },
+    }
 }
 
-if 'runserver' in sys.argv:
+if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    LOCAL_DEV = True
-    DEBUG = True
-    """
-    LOGGING['loggers'].update({
-        '' : {
-            'handlers': ['console'],
-            'propagate' : True,
-            'level' : 'DEBUG',
-        }})
-    """
-else:
-    LOCAL_DEV = False
-    DEBUG = False
 
 
 GOOGLE_ANALYTICS = 'UA-xxxxxxx-xx'
 
 ADMINS = (
-    (u'FEINHEIT Developers', 'dev@feinheit.ch'),
-    #(u'Matthias Kestenholz', 'mk@feinheit.ch'),
-    #(u'Stefan Reinhard', 'sr@feinheit.ch'),
-    #(u'Simon Schürpf', 'ss@feinheit.ch'),
     (u'Simon Schmid', 'ssc@feinheit.ch'),
-    #(u'Simon Bächler', 'sb@feinheit.ch'),
 )
 MANAGERS = ADMINS
 CONTACT_FORM_EMAIL = [mail for name, mail in ADMINS]
@@ -101,25 +70,13 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 STATIC_ROOT = os.path.join(APP_BASEDIR, 'static')
 STATIC_URL = '/static/'
 
-SENTRY_REMOTE_URL = 'http://monitor.feinheit.ch/sentry/store/'
-
-DEFAULT_FILE_STORAGE = 'feinheit.storage.SlugifyStorage'
+#DEFAULT_FILE_STORAGE = 'feinheit.storage.SlugifyStorage'
 
 TEMPLATE_LOADERS = (
     #'feinheit.mobile.template_loaders.MobileLoader',  # Activate this loader, the middleware and the context processor if you have specific mobile templates.
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )
-
-if not DEBUG and False: # Do not activate this by default
-    # Use cached template loader
-    # http://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types
-    TEMPLATE_LOADERS = (
-        ('django.template.loaders.cached.Loader', (
-            'django.template.loaders.filesystem.Loader',
-            'django.template.loaders.app_directories.Loader',
-        )),
-    )
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -145,55 +102,29 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.request',
     'django.core.context_processors.static',
-    #'feinheit.context_processors.meta_page',
-    #'feinheit.context_processors.google_analytics',
-    #'feinheit.mobile.context_processors.mobile_browser',
 )
 
 ROOT_URLCONF = APP_MODULE+'.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(APP_BASEDIR, APP_MODULE, 'templates'),
-    os.path.join(APP_BASEDIR, 'feinheit', 'templates'),
 )
 
 INSTALLED_APPS = (
-    #'feinheit.punctuated_slugs', # Allows . , : ; in slugs
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    #'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
-    #'sentry.client',
-    #'compressor',
-    'feinheit',
-    #'feinheit.contextadmin',
-    'feinheit.external',
     'fhadmin',
-    #'feinheit.gallery',
-    #'feinheit.newsletter',
-    #'feinheit.sharing',
-    #'feinheit.links',
-    #'feinheit.agenda',
-    #'form_designer',
-
-    #'elephantblog',
-    #'pinging',
-    #'disqus',
-
     APP_MODULE,
 
     'feincms',
     'feincms.module.medialibrary',
     'feincms.module.page',
     'mptt',
-    #'rosetta',
-
-
-    #'django.contrib.comments',
 )
 
 LANGUAGES = (
@@ -210,11 +141,6 @@ FEINCMS_RICHTEXT_INIT_CONTEXT  = {
     'TINYMCE_LINK_LIST_URL': None
 }
 
-GRID = {'column': 30, 'spacing': 10, 'vertical': 18}
-
-""" Set this to the correct name: """
-#PINGING_WEBLOG_NAME = 'Mein grossartiger Blog!'
-#PINGING_WEBLOG_URL = 'http://www.feinheit.ch/blog'
 
 SERVER_EMAIL = 'root@oekohosting.ch'
 DEFAULT_FROM_EMAIL = 'root@oekohosting.ch'
@@ -223,8 +149,5 @@ COMPRESS_OUTPUT_DIR = 'cache'
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',
                         'compressor.filters.cssmin.CSSMinFilter']
 
-CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
-CACHE_KEY_PREFIX = APP_MODULE
-CACHE_MIDDLEWARE_SECONDS = 5 * 60
-CACHE_MIDDLEWARE_KEY_PREFIX = APP_MODULE
-CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+import dj_database_url
+DATABASES = {'default': dj_database_url.config(default='sqlite:////Users/ssc/Sites/youthhostel-screen/db.sqlite')}

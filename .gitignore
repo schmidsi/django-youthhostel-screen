@@ -14,3 +14,4 @@
 /media/cache
 /static
 /venv
+db.sqlite
