@@ -2,8 +2,8 @@
 import sys, os
 
 APP_BASEDIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DEBUG = any((cmd in sys.argv for cmd in ('runserver', 'shell', 'dbshell', 'sql',
-                                         'sqlall'))) or os.environ.get('DEBUG', False)
+DEBUG = any((cmd in sys.argv for cmd in ('runserver', 'shell', 'dbshell', 'sql', 'sqlall'))) \
+    or os.environ.get('DEBUG', False)
 
 if APP_BASEDIR not in sys.path:
     sys.path.insert(0, APP_BASEDIR)
@@ -64,12 +64,11 @@ SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
 
-MEDIA_ROOT = os.path.join(APP_BASEDIR, 'media')
-MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(APP_BASEDIR, 'media')
+MEDIA_URL = 'https://youthhostel-screen.s3.amazonaws.com/'
 
-ADMIN_MEDIA_PREFIX = '/static/admin/'
 STATIC_ROOT = os.path.join(APP_BASEDIR, 'static')
-STATIC_URL = '/static/'
+STATIC_URL = 'https://youthhostel-screen.s3.amazonaws.com/'
 
 #DEFAULT_FILE_STORAGE = 'feinheit.storage.SlugifyStorage'
 
@@ -161,4 +160,4 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAIWEWOV5XLHPMP3YQ'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'youthhostel-screen'
-#STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
