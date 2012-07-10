@@ -2,7 +2,7 @@
 import sys, os
 
 APP_BASEDIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DEBUG = any((cmd in sys.argv for cmd in ('runserver', 'shell', 'dbshell', 'sql', 'sqlall')))
+DEBUG = any((cmd in sys.argv for cmd in ('runserver', 'shell', 'dbshell', 'sql', 'sqlall'))) or os.environ['DEBUG']
 
 if APP_BASEDIR not in sys.path:
     sys.path.insert(0, APP_BASEDIR)
@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'mptt',
 
     'feincms_oembed',
+    'gunicorn',
 )
 
 LANGUAGES = (
@@ -152,9 +153,8 @@ COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',
                         'compressor.filters.cssmin.CSSMinFilter']
 
 
-
 import dj_database_url
-DATABASES = {'default': dj_database_url.config(default='sqlite:////Users/ssc/Sites/youthhostel-screen/db.sqlite')}
+DATABASES = {'default': dj_database_url.config(default='sqlite:///%s' % os.path.join(APP_BASEDIR, 'db.sqlite') )}
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAIWEWOV5XLHPMP3YQ'
