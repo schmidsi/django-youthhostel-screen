@@ -151,5 +151,13 @@ COMPRESS_OUTPUT_DIR = 'cache'
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',
                         'compressor.filters.cssmin.CSSMinFilter']
 
+
+
 import dj_database_url
 DATABASES = {'default': dj_database_url.config(default='sqlite:////Users/ssc/Sites/youthhostel-screen/db.sqlite')}
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = 'AKIAIWEWOV5XLHPMP3YQ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'youthhostel-screen'
+#STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
