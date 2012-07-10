@@ -48,7 +48,7 @@ def random_content(request, region, page):
     total_prio = 0
     for content in contents:
         if content.boost_end and content.boost_start and content.boost_priority:
-            if content.boost_start <= now <= content.boost_end:
+            if content.boost_start <= now.time() <= content.boost_end:
                 content.priority = content.boost_priority
         
         if 6 <= now.hour < 10:
