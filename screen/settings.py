@@ -2,7 +2,8 @@
 import sys, os
 
 APP_BASEDIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DEBUG = any((cmd in sys.argv for cmd in ('runserver', 'shell', 'dbshell', 'sql', 'sqlall'))) or os.environ['DEBUG']
+DEBUG = any((cmd in sys.argv for cmd in ('runserver', 'shell', 'dbshell', 'sql',
+                                         'sqlall'))) or os.environ.get('DEBUG', False)
 
 if APP_BASEDIR not in sys.path:
     sys.path.insert(0, APP_BASEDIR)
