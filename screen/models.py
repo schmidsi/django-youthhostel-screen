@@ -9,6 +9,8 @@ from feincms.content.medialibrary.models import MediaFileContent
 
 from feincms_oembed.contents import OembedContent, FeedContent
 
+from feincms_cleanse import cleanse_html
+
 from contents import AnnouncementContent, SimpleGalleryContent
 from extensions import content_timing_extension
 
@@ -27,7 +29,7 @@ content_timing_extension(RawContent, RichTextContent, TemplateContent,
                          MediaFileContent, OembedContent, SimpleGalleryContent, AnnouncementContent)
 
 Page.register_extensions('changedate','navigation', 'ct_tracker')
-Page.create_content_type(RichTextContent, regions=('main',), cleanse=False)
+Page.create_content_type(RichTextContent, regions=('main',), cleanse=cleanse_html)
 Page.create_content_type(MediaFileContent, regions=('main',), POSITION_CHOICES=(('default', _('default')),))
 #Page.create_content_type(OembedContent, regions=('main',), PARAM_CHOICES=(('width=922&heigth=491&autoplay=true', _('922x491autoplay')),))
 Page.create_content_type(OembedContent, regions=('main',), TYPE_CHOICES=[
