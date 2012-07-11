@@ -64,13 +64,20 @@ SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
 
-#MEDIA_ROOT = os.path.join(APP_BASEDIR, 'media')
-MEDIA_URL = 'https://youthhostel-screen.s3.amazonaws.com/'
+MEDIA_ROOT = os.path.join(APP_BASEDIR, 'upload')
+MEDIA_URL = os.environ.get('MEDIA_URL', '/upload/')
 
 STATIC_ROOT = os.path.join(APP_BASEDIR, 'static')
-STATIC_URL = 'https://youthhostel-screen.s3.amazonaws.com/'
+STATIC_URL = os.environ.get('MEDIA_URL', '/static/')
 
-#DEFAULT_FILE_STORAGE = 'feinheit.storage.SlugifyStorage'
+# only use s3 on production
+if all((var in os.environ for var in ('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'AWS_STORAGE_BUCKET_NAME'))):
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+
 
 TEMPLATE_LOADERS = (
     #'feinheit.mobile.template_loaders.MobileLoader',  # Activate this loader, the middleware and the context processor if you have specific mobile templates.
@@ -152,12 +159,5 @@ COMPRESS_OUTPUT_DIR = 'cache'
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',
                         'compressor.filters.cssmin.CSSMinFilter']
 
-
 import dj_database_url
 DATABASES = {'default': dj_database_url.config(default='sqlite:///%s' % os.path.join(APP_BASEDIR, 'db.sqlite') )}
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_ACCESS_KEY_ID = 'AKIAIWEWOV5XLHPMP3YQ'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'youthhostel-screen'
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'

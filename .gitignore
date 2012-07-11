@@ -8,10 +8,7 @@
 .project
 .pydevproject
 *eclipse*
-/secrets.py
-/media/medialibrary
-/media/uploads
-/media/cache
+/upload
 /static
 /venv
 db.sqlite
