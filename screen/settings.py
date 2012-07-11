@@ -70,6 +70,8 @@ MEDIA_URL = os.environ.get('MEDIA_URL', '/upload/')
 STATIC_ROOT = os.path.join(APP_BASEDIR, 'static')
 STATIC_URL = os.environ.get('STATIC_URL', '/static/')
 
+print "STATIC_URL + %s, MEDIA URL + %s" % (STATIC_URL, MEDIA_URL)
+
 # only use s3 on production
 if all((var in os.environ for var in ('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'AWS_STORAGE_BUCKET_NAME'))):
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
@@ -79,6 +81,7 @@ if all((var in os.environ for var in ('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KE
     AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
     AWS_PRELOAD_METADATA = True
 
+print "x STATIC_URL + %s, MEDIA URL + %s" % (STATIC_URL, MEDIA_URL)
 
 TEMPLATE_LOADERS = (
     #'feinheit.mobile.template_loaders.MobileLoader',  # Activate this loader, the middleware and the context processor if you have specific mobile templates.
