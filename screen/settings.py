@@ -68,7 +68,7 @@ MEDIA_ROOT = os.path.join(APP_BASEDIR, 'upload')
 MEDIA_URL = os.environ.get('MEDIA_URL', '/upload/')
 
 STATIC_ROOT = os.path.join(APP_BASEDIR, 'static')
-STATIC_URL = os.environ.get('MEDIA_URL', '/static/')
+STATIC_URL = os.environ.get('STATIC_URL', '/static/')
 
 # only use s3 on production
 if all((var in os.environ for var in ('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'AWS_STORAGE_BUCKET_NAME'))):
