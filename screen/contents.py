@@ -3,7 +3,9 @@
 from django.db import models
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+
 from feincms.module.medialibrary.models import Category
+
 
 class AnnouncementContent(models.Model):
     announcement = models.CharField('Announcement', max_length=200)

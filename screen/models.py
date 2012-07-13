@@ -25,8 +25,8 @@ Page.register_templates({
         ),
     })
 
-content_timing_extension(RawContent, RichTextContent, TemplateContent, TextContent,
-                         MediaFileContent, OembedContent, SimpleGalleryContent, AnnouncementContent)
+content_timing_extension(RichTextContent, TextContent, MediaFileContent, OembedContent,
+    SimpleGalleryContent, AnnouncementContent)
 
 Page.register_extensions('changedate','navigation', 'ct_tracker')
 Page.create_content_type(RichTextContent, regions=('main',), cleanse=cleanse_html)
