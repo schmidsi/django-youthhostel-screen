@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'fhadmin',
+    'south',
     APP_MODULE,
 
     'feincms',
@@ -151,6 +152,11 @@ FEINCMS_RICHTEXT_INIT_CONTEXT  = {
     'TINYMCE_CONTENT_CSS_URL': None,
     'TINYMCE_LINK_LIST_URL': None
 }
+
+SOUTH_MIGRATION_MODULES = dict((app, 'screen.migrate.%s' % app) for app in (
+    'page',
+    'medialibrary',
+))
 
 
 SERVER_EMAIL = 'root@oekohosting.ch'
