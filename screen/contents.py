@@ -36,6 +36,10 @@ class SimpleGalleryContent(models.Model):
 class TextContent(models.Model):
     text = models.TextField()
 
+    feincms_item_editor_includes = {
+        'head': ['admin/content/text/init.html'],
+    }
+
     class Meta:
         abstract = True
         verbose_name = _('Text')
