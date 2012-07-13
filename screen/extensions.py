@@ -16,6 +16,7 @@ def create_item_admin(model_fields):
             ('boost_priority', 'boost_start', 'boost_end'),
             ('region', 'ordering')
         )
+        raw_id_fields = ('mediafile',)
 
     return ItemAdmin
 
