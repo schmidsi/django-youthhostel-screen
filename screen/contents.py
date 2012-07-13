@@ -29,3 +29,15 @@ class SimpleGalleryContent(models.Model):
         images = self.category.mediafile_set.filter(type='image')
 
         return render_to_string('content/simplegallery/default.html', {'content' : self, 'images' : images})
+
+
+class TextContent(models.Model):
+    text = models.TextField()
+
+    class Meta:
+        abstract = True
+        verbose_name = _('Text')
+        verbose_name_plural = _('Texts')
+
+    def render(self, **kwargs):
+        return render_to_string('content/text/default.html', {'content' : self})
