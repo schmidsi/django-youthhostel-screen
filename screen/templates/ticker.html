@@ -5,7 +5,7 @@
             <span class="copyright">{{ story.author }} {{ story.source }}</span>
             <span class="date">
                 {{ story.timestamp|date:"SHORT_DATE_FORMAT" }}
-								{{ story.timestamp|time:"SHORT_TIME_FORMAT" }}
+								{{ story.timestamp|time:"TIME_FORMAT" }}
             </span>
         </li>
     {% endfor %}
