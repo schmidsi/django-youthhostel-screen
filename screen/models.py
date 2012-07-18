@@ -26,8 +26,6 @@ content_timing_extension(RichTextContent, TextContent, MediaFileContent, OembedC
 
 Page.register_extensions(
     'feincms.module.extensions.changedate',
-    'feincms.module.page.extensions.navigation',
-    'feincms.module.page.extensions.navigation',
     'feincms.module.extensions.ct_tracker')
 
 #Page.create_content_type(RichTextContent, regions=('main',), cleanse=cleanse_html)
