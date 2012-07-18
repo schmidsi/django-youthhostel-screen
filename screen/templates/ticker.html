@@ -1,7 +1,7 @@
 <ul class="ticker">
     {% for story in stories %}
         <li>
-            {{ story.body|default:story.title|truncatechars:170 }}
+            {{ story.body|default:story.title|truncatechars:200 }}
             <span class="copyright">{{ story.author }} {{ story.source }}</span>
             <span class="date">
                 {{ story.timestamp|date:"SHORT_DATE_FORMAT" }}

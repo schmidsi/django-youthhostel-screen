@@ -140,7 +140,7 @@ div.image {
 #ticker {
     bottom: 0em;
     overflow: hidden;
-    width: 100%;
+    width: 90%;
     height: 4.0em;
     font-size: 1.2em;
 }
@@ -154,7 +154,6 @@ ul.ticker {
     position: absolute;
     top: -4em;
     left: 1px;
-    padding-right: 2em;
     padding-left: 1em;
     opacity: 0;
     
@@ -188,6 +187,12 @@ ul.ticker {
     }
 }
 */
+
+#clock {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
 
 /* weather */
 #weather {
