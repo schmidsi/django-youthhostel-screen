@@ -9,6 +9,8 @@ from django.template.loader import render_to_string
 from feincms.module.page.models import Page
 from feincms.templatetags.feincms_tags import _render_content
 
+from newswall.models import Source
+
 
 def get_region(request, path):
     content = request.GET.get('content', 'all')
@@ -96,20 +98,16 @@ def weather(request):
 
 
 def ticker_combined(request, region, page, string_response=False):
-    entries = []
-    for ticker in getattr(page.content, region):
-        entries_with_rights = []
-        for entry in ticker.feed.entries:
-            try:
-                entry['rights'] = ticker.feed.feed.rights
-            except:
-                pass
-            entries_with_rights.append(entry)
-        entries += entries_with_rights
-    random.shuffle(entries)
+    sources = Source.objects.filter(newswallcontent__in=page.newswallcontent_set.all())
+    stories = list()
+
+    for source in sources:
+        stories += list(source.stories.all().order_by('-timestamp')[:10])
+
+    random.shuffle(stories)
     
     if string_response:
-        return render_to_string('ticker.html', {'entries' : entries})
+        return render_to_string('ticker.html', {'stories' : stories})
     else:
-        return render(request, 'ticker.html', {'entries' : entries})
+        return render(request, 'ticker.html', {'stories' : stories})
     

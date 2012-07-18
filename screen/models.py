@@ -7,7 +7,7 @@ from feincms.content.medialibrary.v2 import MediaFileContent
 
 from feincms_oembed.contents import OembedContent, FeedContent
 
-from contents import AnnouncementContent, SimpleGalleryContent, TextContent
+from contents import AnnouncementContent, SimpleGalleryContent, TextContent, NewswallContent
 from extensions import content_timing_extension
 
 Page.register_templates({
@@ -38,5 +38,5 @@ Page.create_content_type(OembedContent, regions=('main',), TYPE_CHOICES=[
 Page.create_content_type(TextContent, regions=('main',))
 Page.create_content_type(SimpleGalleryContent, regions=('main',))
 Page.create_content_type(AnnouncementContent, regions=('announcements',))
-Page.create_content_type(FeedContent, regions=('ticker',))
+Page.create_content_type(NewswallContent, regions=('ticker',))
 #Page.create_content_type(TemplateContent, regions=('main',))

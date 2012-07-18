@@ -139,6 +139,8 @@ INSTALLED_APPS = (
 
     'feincms_oembed',
     'gunicorn',
+
+    'newswall',
 )
 
 LANGUAGES = (

@@ -1,0 +1,3 @@
+[submodule "lib/django-newswall"]
+	path = lib/django-newswall
+	url = git://github.com/schmidsi/django-newswall.git

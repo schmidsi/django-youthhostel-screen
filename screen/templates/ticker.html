@@ -1,12 +1,11 @@
 <ul class="ticker">
-    {% for entry in entries %}
+    {% for story in stories %}
         <li>
-            {{ entry.summary|truncatewords:35 }}
-            <span class="copyright">{{ entry.rights }}</span>
+            {{ story.body|default:story.title|truncatechars:170 }}
+            <span class="copyright">{{ story.author }} {{ story.source }}</span>
             <span class="date">
-                {% with entry.updated_parsed as t %}
-                    {{ t.tm_mday }}.{{ t.tm_mon }}.{{ t.tm_year }} {{ t.tm_hour|stringformat:'02d' }}:{{ t.tm_min|stringformat:'02d' }}
-                {% endwith %} 
+                {{ story.timestamp|date:"SHORT_DATE_FORMAT" }}
+								{{ story.timestamp|time:"SHORT_TIME_FORMAT" }}
             </span>
         </li>
     {% endfor %}

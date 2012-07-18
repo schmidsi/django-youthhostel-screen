@@ -6,6 +6,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from feincms.module.medialibrary.models import Category
 
+from newswall.models import Source
+
 
 class AnnouncementContent(models.Model):
     announcement = models.CharField('Announcement', max_length=200)
@@ -47,3 +49,15 @@ class TextContent(models.Model):
 
     def render(self, **kwargs):
         return render_to_string('content/text/default.html', {'content' : self})
+
+
+class NewswallContent(models.Model):
+    sources = models.ManyToManyField(Source)
+
+    class Meta:
+        abstract = True
+        verbose_name = _('Newswall')
+        verbose_name_plural = _('Newswall')
+
+    def render(self, **kwargs):
+        return render_to_string('content/newswall/default.html', {'content' : self})
