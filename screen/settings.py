@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'gunicorn',
 
     'newswall',
+    'mediavariations',
 )
 
 LANGUAGES = (
@@ -167,6 +168,8 @@ DEFAULT_FROM_EMAIL = 'root@oekohosting.ch'
 COMPRESS_OUTPUT_DIR = 'cache'
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',
                         'compressor.filters.cssmin.CSSMinFilter']
+
+BLITLINE_APPLICATION_ID = os.environ.get('BLITLINE_APPLICATION_ID', None)
 
 import dj_database_url
 DATABASES = {'default': dj_database_url.config(default='sqlite:///%s' % os.path.join(APP_BASEDIR, 'db.sqlite') )}
