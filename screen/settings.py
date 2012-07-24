@@ -173,3 +173,8 @@ BLITLINE_APPLICATION_ID = os.environ.get('BLITLINE_APPLICATION_ID', None)
 
 import dj_database_url
 DATABASES = {'default': dj_database_url.config(default='sqlite:///%s' % os.path.join(APP_BASEDIR, 'db.sqlite') )}
+
+
+MEDIAVARIATIONS_SPECS =  {
+    'blitline' : 'mediavariations.contrib.blitline.specs.Generic',
+}
