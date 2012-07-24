@@ -1,0 +1,4 @@
+{% load mediavariations %}
+<div class="image pdf" data-duration="{{ content.duration }}" data-id="{{ content.ordering }}"
+		 style="background-image: url({{ content.mediafile|mediavariation:"pdf2jpg" }})">
+</div>

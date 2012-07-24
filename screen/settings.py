@@ -177,4 +177,5 @@ DATABASES = {'default': dj_database_url.config(default='sqlite:///%s' % os.path.
 
 MEDIAVARIATIONS_SPECS =  {
     'blitline' : 'mediavariations.contrib.blitline.specs.Generic',
+    'pdf2jpg' : 'mediavariations.contrib.blitline.specs.Pdf2Jpeg',
 }
