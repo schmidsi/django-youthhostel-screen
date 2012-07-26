@@ -16,3 +16,4 @@ psycopg2==2.4.5
 pyPdf==1.13
 python-dateutil==2.1
 six==1.1.0
+wsgiref==0.1.2
