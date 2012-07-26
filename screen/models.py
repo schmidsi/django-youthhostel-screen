@@ -13,7 +13,7 @@ from mediavariations.contrib.feincms.extensions import variations
 from contents import AnnouncementContent, SimpleGalleryContent, TextContent, NewswallContent
 from extensions import content_timing_extension
 
-MediaFile.register_extension(variations)
+#MediaFile.register_extension(variations)
 
 Page.register_templates({
     'title': 'Standard Screen',
