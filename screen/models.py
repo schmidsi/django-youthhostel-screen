@@ -2,13 +2,18 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from feincms.module.page.models import Page
+from feincms.module.medialibrary.models import MediaFile
 from feincms.content.richtext.models import RichTextContent
 from feincms.content.medialibrary.v2 import MediaFileContent
 
 from feincms_oembed.contents import OembedContent, FeedContent
 
+from mediavariations.contrib.feincms.extensions import variations
+
 from contents import AnnouncementContent, SimpleGalleryContent, TextContent, NewswallContent
 from extensions import content_timing_extension
+
+MediaFile.register_extension(variations)
 
 Page.register_templates({
     'title': 'Standard Screen',
