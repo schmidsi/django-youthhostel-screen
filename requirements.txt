@@ -1,5 +1,5 @@
 Django==1.4
-FeinCMS==1.6.2
+-e git://github.com/schmidsi/feincms.git@a4190b39ae470d2a9c42a970421e870a6d5a5b1c#egg=FeinCMS-dev
 PIL==1.1.7
 South==0.7.5
 boto==2.5.2
