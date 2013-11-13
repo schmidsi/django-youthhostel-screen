@@ -1,5 +1,5 @@
 Django==1.4
-FeinCMS==1.6.2
+-e git://github.com/schmidsi/feincms.git@a4190b39ae470d2a9c42a970421e870a6d5a5b1c#egg=FeinCMS-dev
 PIL==1.1.7
 South==0.7.5
 boto==2.5.2
@@ -13,6 +13,7 @@ gunicorn==0.14.5
 ipython==0.13
 lxml==2.3.4
 psycopg2==2.4.5
+pyPdf==1.13
 python-dateutil==2.1
 six==1.1.0
 wsgiref==0.1.2
