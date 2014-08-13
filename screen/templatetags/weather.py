@@ -27,7 +27,7 @@ def weather_widget(context, lat, lng, units, lang, exclude):
 
     weather = {
         'current': {
-            'temp': parsed['currently']['temperature'],
+            'temp': int(round(parsed['currently']['temperature'])),
             'icon': parsed['currently']['icon'],
             'humidity': parsed['currently']['humidity']
         },
@@ -37,8 +37,8 @@ def weather_widget(context, lat, lng, units, lang, exclude):
     for forecast in parsed['daily']['data']:
         weather['forecast'].append({
             'day': datetime.fromtimestamp(forecast['time']).strftime('%a'),
-            'high': forecast['temperatureMax'],
-            'low': forecast['temperatureMin'],
+            'high': int(round(forecast['temperatureMax'])),
+            'low': int(round(forecast['temperatureMin'])),
             'icon': forecast['icon'],
         })
 
