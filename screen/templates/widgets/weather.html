@@ -2,14 +2,14 @@
     {% if weather %}
     <div class="weather-today">
         <span class="day">Today</span>
-        <img class="weather-icon" src="{{ STATIC_URL }}screen/img/weather/{{ weather.current.icon }}.png" />
-        <span class="temperature">{{ weather.current.temp }}°</span><br />
+        <i class="wi big {{ weather.current.icon }}"></i>
+        <span class="temperature">{{ weather.current.temp }}<i class="wi wi-celsius"></i></span><br />
     </div>
     {% for forecast in weather.forecast|slice:"1:3" %}
         <div class="weather-forecast">
             <span class="day">{{ forecast.day }}</span>
-            <img class="weather-icon" src="{{ STATIC_URL }}screen/img/weather/{{ forecast.icon }}.png" />
-            <span class="temperature">{{ forecast.high }}°</span> <br />
+            <i class="wi big {{ forecast.icon }}"></i>
+            <span class="temperature">{{ forecast.high }}<i class="wi wi-celsius"></i></span> <br />
         </div>
     {% endfor %}
     {% endif %}

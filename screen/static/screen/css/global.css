@@ -216,9 +216,13 @@ ul.ticker {
     font-size: 0.7em;
 }
 
-.weather-icon {
-    height: 90%;
-    width: 90%;
+.wi.big {
+    display: block;
+    font-size: 3.5em;
+    height: 1.2em;
+    width: 2em;
+    color: #ffffff;
+    text-shadow: 2px 2px 2px #5d8dcb;
 }
 
 .temperature {
