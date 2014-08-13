@@ -171,6 +171,9 @@ COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter',
 
 BLITLINE_APPLICATION_ID = os.environ.get('BLITLINE_APPLICATION_ID', None)
 
+# Key via https://developer.forecast.io/
+FORECAST_IO_API_KEY = os.environ.get('FORECAST_IO_API_KEY', None)
+
 import dj_database_url
 DATABASES = {'default': dj_database_url.config(default='sqlite:///%s' % os.path.join(APP_BASEDIR, 'db.sqlite') )}
 

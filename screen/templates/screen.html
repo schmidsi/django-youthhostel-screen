@@ -1,4 +1,4 @@
-{% load feincms_tags  ticker %} {# weather #}
+{% load feincms_tags ticker weather %}
 <!doctype html>
 <html>
 <head>
@@ -22,7 +22,7 @@
     <div id="container" data-path={{ feincms_page.get_absolute_url }}>
         <div id="weather">
             {% block weather %}
-                {# weather_widget 'basel,switzerland' #}
+                {% weather_widget '47.554189' '7.601553' 'ca' 'de' 'hourly' %}
             {% endblock weather %}
         </div>
         <div id="announcements">
