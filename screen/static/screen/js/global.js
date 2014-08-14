@@ -1,3 +1,5 @@
+var timeouts = {};
+
 $(function(){
     getNextContent('main', '#content');
     getNextContent('announcements', '#announcements');
@@ -37,12 +39,17 @@ function getNextContent(region, container) {
             }
             
             $container.append($data);
+
+            if ($data.hasClass('youtube')) {
+                initYoutube($data, region, container);
+            }
+
             $data.hide().fadeIn(500);
             $container.data('currentcontent', $data.data('id'));
             
             window.setTimeout(function() { oldContent.remove() }, 5000);
             
-            window.setTimeout(getNextContent, duration * 1000, region, container)
+            timeouts[region] = window.setTimeout(getNextContent, duration * 1000, region, container)
         },
         error: function(jqXHR, status, error) {
             /* silently retry to get content after 10 sec */
@@ -50,4 +57,39 @@ function getNextContent(region, container) {
                 10 * 1000, region, container)
         }
     })
+}
+
+function initYoutube($el, region, container) {
+    var player = new YT.Player($el.get(0), {
+        height: $el.height(),
+        width: $el.width(),
+        videoId: $el.data('youtubeid'),
+        playerVars: { 'autoplay': 1, 'controls': 0 },
+        events: {
+            'onReady': function(event) {
+                event.target.playVideo();
+                event.target.mute();
+
+                // emergency exit: if the video has 3 time longer than its
+                // duration to play (due to network errors, etc), go to next content
+                window.clearTimeout(timeouts[region]);
+                timeouts[region] = window.setTimeout(
+                    getNextContent,
+                    event.target.getDuration() * 3000,
+                    region,
+                    container
+                )
+            },
+            'onStateChange': function(event) {
+                if (event.data == YT.PlayerState.ENDED) {
+                    window.clearTimeout(timeouts[region]);
+                    getNextContent(region, container);
+                }
+            }
+        }
+    });
+}
+
+function onYouTubeIframeAPIReady() {
+    console.log('onYouTubeIframeAPIReady');
 }

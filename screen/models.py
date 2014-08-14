@@ -6,11 +6,11 @@ from feincms.module.medialibrary.models import MediaFile
 from feincms.content.richtext.models import RichTextContent
 from feincms.content.medialibrary.v2 import MediaFileContent
 
-from feincms_oembed.contents import OembedContent, FeedContent
+from feincms_oembed.contents import FeedContent
 
 from mediavariations.contrib.feincms.extensions import variations
 
-from contents import AnnouncementContent, SimpleGalleryContent, TextContent, NewswallContent
+from contents import AnnouncementContent, SimpleGalleryContent, TextContent, NewswallContent, OembedContent
 from extensions import content_timing_extension
 
 #MediaFile.register_extension(variations)
