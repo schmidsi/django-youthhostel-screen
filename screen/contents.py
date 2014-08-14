@@ -37,6 +37,11 @@ class SimpleGalleryContent(models.Model):
 
 class TextContent(models.Model):
     text = models.TextField()
+    size = models.CharField(max_length=6, choices=(
+        ('small', 'small'),
+        ('medium', 'medium'),
+        ('large', 'large'),
+    ), default='medium')
 
     feincms_item_editor_includes = {
         'head': ['admin/content/text/init.html'],

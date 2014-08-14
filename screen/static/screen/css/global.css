@@ -134,6 +134,18 @@ div.image {
     line-height: 1.3em;
 }
 
+.text.small {
+    font-size: 1em;
+}
+
+.text.medium {
+    font-size: 1.5em;
+}
+
+.text.large {
+    font-size: 2em;
+}
+
 .text p {
     margin-bottom: 1em;
 }
