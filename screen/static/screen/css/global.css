@@ -134,6 +134,10 @@ div.image {
     line-height: 1.3em;
 }
 
+.text p {
+    margin-bottom: 1em;
+}
+
 
 /* ticker */
 

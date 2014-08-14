@@ -11,6 +11,8 @@ from feincms.templatetags.feincms_tags import _render_content
 
 from newswall.models import Source
 
+from contents import SimpleGalleryContent
+
 
 def get_region(request, path):
     content = request.GET.get('content', 'all')
@@ -52,6 +54,11 @@ def random_content(request, region, page):
         if content.boost_end and content.boost_start and content.boost_priority:
             if content.boost_start <= now.time() <= content.boost_end:
                 content.priority = content.boost_priority
+
+        # do not add empty galleries
+        if isinstance(content, SimpleGalleryContent):
+            if content.category.mediafile_set.count() == 0:
+                break
         
         if 6 <= now.hour < 10:
             if content.morning:
