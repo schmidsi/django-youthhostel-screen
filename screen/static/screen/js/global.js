@@ -42,6 +42,8 @@ function getNextContent(region, container) {
 
             if ($data.hasClass('youtube')) {
                 initYoutube($data, region, container);
+            } else if ($data.hasClass('facebook')) {
+                getFacebookPost($data, region, container);
             }
 
             $data.hide().fadeIn(500);
@@ -90,6 +92,22 @@ function initYoutube($el, region, container) {
     });
 }
 
-function onYouTubeIframeAPIReady() {
-    console.log('onYouTubeIframeAPIReady');
+
+function getFacebookPost($el, region, container) {
+    var user = $el.data('user'),
+        url = 'https://graph.facebook.com/' + user + '/posts/?fields=type,message,object_id&filter=type:photo&access_token=159457810754902|UqvcQEszzDvlLlft85FtuP2LWYo';
+
+    $.get(url, function(json) {
+        var last5Posts = json.data.slice(0, 5),
+            randomPost = last5Posts[parseInt(Math.random()*4)];
+
+        console.log(randomPost);
+        
+        $el.find('.caption').text(randomPost.message);
+
+        $.get('https://graph.facebook.com/' + randomPost.object_id + '?access_token=159457810754902|UqvcQEszzDvlLlft85FtuP2LWYo', function(json) {
+            $el.css('background-image', 'url(' + json.images[0].source + ')');
+        });
+
+    });
 }

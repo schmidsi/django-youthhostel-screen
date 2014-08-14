@@ -76,7 +76,7 @@ class OembedContent(OriginalOembedContent):
     Adjust OembedContent to handle Youtube Embeds differently, to use the 
     Youtube Player API: https://developers.google.com/youtube/iframe_api_reference?hl=de
     """
-    
+
     class Meta:
         abstract = True
         verbose_name = _('External content')
@@ -88,4 +88,16 @@ class OembedContent(OriginalOembedContent):
             return render_to_string('external/youtube.html', {'content': self, 'id': id})
         else:
             return self.get_html_from_json(fail_silently=True)
+
+
+class FacebookImagePostsContent(models.Model):
+    user = models.CharField(max_length=100, default="youthhostel.ch", help_text="Username of the Facebookpage to get the Imageposts from")
+
+    class Meta:
+        abstract = True
+        verbose_name = _('Facebook Image Posts')
+        verbose_name_plural = _('External Image Posts')
+
+    def render(self, **kwargs):
+        return render_to_string('content/facebook/default.html', {'content' : self})
 

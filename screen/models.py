@@ -10,7 +10,8 @@ from feincms_oembed.contents import FeedContent
 
 from mediavariations.contrib.feincms.extensions import variations
 
-from contents import AnnouncementContent, SimpleGalleryContent, TextContent, NewswallContent, OembedContent
+from contents import AnnouncementContent, SimpleGalleryContent, \
+    TextContent, NewswallContent, OembedContent, FacebookImagePostsContent
 from extensions import content_timing_extension
 
 #MediaFile.register_extension(variations)
@@ -27,7 +28,7 @@ Page.register_templates({
     })
 
 content_timing_extension(RichTextContent, TextContent, MediaFileContent, OembedContent,
-    SimpleGalleryContent, AnnouncementContent)
+    SimpleGalleryContent, AnnouncementContent, FacebookImagePostsContent)
 
 Page.register_extensions(
     'feincms.module.extensions.changedate',
@@ -40,6 +41,7 @@ Page.create_content_type(OembedContent, regions=('main',), TYPE_CHOICES=[
 ])
 Page.create_content_type(TextContent, regions=('main',))
 Page.create_content_type(SimpleGalleryContent, regions=('main',))
+Page.create_content_type(FacebookImagePostsContent, regions=('main',))
 Page.create_content_type(AnnouncementContent, regions=('announcements',))
 Page.create_content_type(NewswallContent, regions=('ticker',))
 #Page.create_content_type(TemplateContent, regions=('main',))
