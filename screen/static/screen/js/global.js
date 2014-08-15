@@ -98,11 +98,11 @@ function getFacebookPost($el, region, container) {
         url = 'https://graph.facebook.com/' + user + '/posts/?fields=type,message,object_id&filter=type:photo&access_token=159457810754902|UqvcQEszzDvlLlft85FtuP2LWYo';
 
     $.get(url, function(json) {
-        var last5Posts = json.data.slice(0, 5),
-            randomPost = last5Posts[parseInt(Math.random()*4)];
+        var last5Posts = json.data.slice(0, 10),
+            randomPost = last5Posts[parseInt(Math.random()*9)];
 
         console.log(randomPost);
-        
+
         $el.find('.caption').text(randomPost.message);
 
         $.get('https://graph.facebook.com/' + randomPost.object_id + '?access_token=159457810754902|UqvcQEszzDvlLlft85FtuP2LWYo', function(json) {
