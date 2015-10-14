@@ -9,6 +9,7 @@
 .pydevproject
 *eclipse*
 /upload
+/screen/upload
 /static
 /venv
 db.sqlite
