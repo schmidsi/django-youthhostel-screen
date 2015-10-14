@@ -12,8 +12,7 @@ def create_item_admin(model_fields):
     class ItemAdmin(FeinCMSInline):
         fields = (
             tuple(model_fields),
-            ('priority', 'duration', 'morning', 'afternoon', 'evening', 'night'),
-            ('boost_priority', 'boost_start', 'boost_end'),
+            ('priority', 'duration', 'morning', 'noon', 'afternoon', 'evening', 'night'),
             ('region', 'ordering')
         )
         raw_id_fields = ('mediafile',)
@@ -32,10 +31,6 @@ def content_timing_extension(*content_classes):
         cls.add_to_class('afternoon', models.BooleanField('Nachmittag (13:30-17:00)', default=True))
         cls.add_to_class('evening', models.BooleanField('Abend (17:00-23:00)', default=True))
         cls.add_to_class('night', models.BooleanField('Nacht (23:00-06:00)', default=True))
-        
-        cls.add_to_class('boost_start', models.TimeField('Vorzugzeit Start', blank=True, null=True))
-        cls.add_to_class('boost_end', models.TimeField('Vorzugzeit Ende', blank=True, null=True))
-        cls.add_to_class('boost_priority', models.PositiveIntegerField('Priorität in der Vorzugzeit', blank=True, null=True))
         
         cls.add_to_class('duration', models.PositiveIntegerField('Anzeigedauer (s)', default=DEFAULT_DURATION))
 
