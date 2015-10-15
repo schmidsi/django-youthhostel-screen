@@ -6,15 +6,17 @@ from feincms.module.medialibrary.models import MediaFile
 from feincms.content.richtext.models import RichTextContent
 from feincms.content.medialibrary.v2 import MediaFileContent
 
-from feincms_oembed.contents import FeedContent
+from feincms_oembed.contents import OembedContent, FeedContent
 
 from mediavariations.contrib.feincms.extensions import variations
 
 from contents import AnnouncementContent, SimpleGalleryContent, \
-    TextContent, NewswallContent, OembedContent, FacebookImagePostsContent
-from extensions import content_timing_extension
+    TextContent, NewswallContent, FacebookImagePostsContent
+from extensions import content_timing_extension, mediafile_cover_extension, \
+    page_location
 
 #MediaFile.register_extension(variations)
+MediaFile.register_extension(mediafile_cover_extension)
 
 Page.register_templates({
     'title': 'Standard Screen',
@@ -33,6 +35,8 @@ content_timing_extension(RichTextContent, TextContent, MediaFileContent, OembedC
 Page.register_extensions(
     'feincms.module.extensions.changedate',
     'feincms.module.extensions.ct_tracker')
+
+Page.register_extension(page_location)
 
 #Page.create_content_type(RichTextContent, regions=('main',), cleanse=cleanse_html)
 Page.create_content_type(MediaFileContent, regions=('main',), TYPE_CHOICES=(('default', _('default')),))
