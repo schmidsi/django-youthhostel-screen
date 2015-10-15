@@ -1,6 +1,0 @@
-[submodule "lib/django-newswall"]
-	path = lib/django-newswall
-	url = git://github.com/schmidsi/django-newswall.git
-[submodule "lib/django-mediavariations"]
-	path = lib/django-mediavariations
-	url = git://github.com/schmidsi/django-mediavariations.git

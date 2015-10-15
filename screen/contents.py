@@ -64,8 +64,8 @@ class NewswallContent(models.Model):
 
     class Meta:
         abstract = True
-        verbose_name = _('Newswall')
-        verbose_name_plural = _('Newswall')
+        verbose_name = _('News Panel')
+        verbose_name_plural = _('News Panel')
 
     def render(self, **kwargs):
         return render_to_string('content/newswall/default.html', {'content' : self})

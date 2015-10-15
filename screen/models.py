@@ -23,14 +23,13 @@ Page.register_templates({
     'path': 'screen.html',
     'regions': (
         ('main', _('Main content area')),
-        ('ticker', _('News ticker'), 'inherited'),
         ('announcements', _('Announcements'), 'inherited'),
         ('inactive', _('Inactive')),
         ),
     })
 
 content_timing_extension(RichTextContent, TextContent, MediaFileContent, OembedContent,
-    SimpleGalleryContent, AnnouncementContent, FacebookImagePostsContent)
+    SimpleGalleryContent, AnnouncementContent, FacebookImagePostsContent, NewswallContent)
 
 Page.register_extensions(
     'feincms.module.extensions.changedate',
@@ -41,11 +40,11 @@ Page.register_extension(page_location)
 #Page.create_content_type(RichTextContent, regions=('main',), cleanse=cleanse_html)
 Page.create_content_type(MediaFileContent, regions=('main',), TYPE_CHOICES=(('default', _('default')),))
 Page.create_content_type(OembedContent, regions=('main',), TYPE_CHOICES=[
-    ('default', _('default'), {'width' : 922, 'heigth' : 491, 'autoplay': 'true'})
+    ('default', _('default'), {'width' : 922, 'heigth' : 491, 'autoplay': 'true', 'key': '3fa8f41c4dd64ca3baabbd1d712e8c8b'})
 ])
 Page.create_content_type(TextContent, regions=('main',))
 Page.create_content_type(SimpleGalleryContent, regions=('main',))
 Page.create_content_type(FacebookImagePostsContent, regions=('main',))
 Page.create_content_type(AnnouncementContent, regions=('announcements',))
-Page.create_content_type(NewswallContent, regions=('ticker',))
+Page.create_content_type(NewswallContent, regions=('main',))
 #Page.create_content_type(TemplateContent, regions=('main',))

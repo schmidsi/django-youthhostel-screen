@@ -1,3 +1,2 @@
-<div class="external" data-duration="{{ content.duration }}" data-id="{{ content.ordering }}">
-    {{ response.html|safe }}
-</div>
+{% load jsonify %}
+{{ response|jsonify|safe }}

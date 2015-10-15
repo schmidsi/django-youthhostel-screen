@@ -1,12 +1,11 @@
-<ul class="ticker">
+[
     {% for story in stories %}
-        <li>
-            {{ story.body|default:story.title|truncatechars:200 }}
-            <span class="copyright">{{ story.author }} {{ story.source }}</span>
-            <span class="date">
-                {{ story.timestamp|date:"SHORT_DATE_FORMAT" }}
-								{{ story.timestamp|time:"TIME_FORMAT" }}
-            </span>
-        </li>
+    {
+        title: '{{ story.title}}',
+        body: '{{ story.body|linebreaks|escapejs }}',
+        timestamp: '{{ story.timestamp }}',
+        author: '{{ story.author }}',
+        source: '{{ story.source }}'
+    }{% if not forloop.last %},{% endif %}
     {% endfor %}
-</ul>
+]

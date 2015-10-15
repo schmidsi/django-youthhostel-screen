@@ -1,4 +1,4 @@
-{% load feincms_tags ticker weather %}
+{% load feincms_tags ticker weather jsonify %}
 <!doctype html>
 <html>
 <head>
@@ -17,9 +17,59 @@
     <script type="text/javascript" src="{{ STATIC_URL }}screen/js/slideshow.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}screen/lib/coolclock/coolclock.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}screen/lib/coolclock/moreskins.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}screen/js/global.js"></script>
+    <!--<script type="text/javascript" src="{{ STATIC_URL }}screen/js/global.js"></script>-->
+
+    <script>
+        window.ScreenData = {
+            location: "{{ feincms_page.location }}",
+            main: [
+                {% for content in feincms_page.content.main %}
+                {
+                    type: '{{ content.Meta.verbose_name|lower }}',
+                    ordering: {{ content.ordering }},
+                    priority: {{ content.priority }},
+                    morning: {{ content.morning|lower }},
+                    noon: {{ content.noon|lower }},
+                    afternoon: {{ content.afternoon|lower }},
+                    evening: {{ content.evening|lower }},
+                    night: {{ content.night|lower }},
+
+                    {% if content.Meta.verbose_name|lower == 'text' %}
+                        text: '{{ content.text|linebreaks }}',
+                        size: '{{ content.size }}',
+
+                    {% elif content.Meta.verbose_name|lower == 'simple image gallery' %}
+                        mediafiles: [
+                            {% for m in content.category.mediafile_set.all %}
+                            {
+                                url: '{{ m.get_absolute_url }}',
+                                cover: {{ m.cover|lower }},
+                                caption: '{{ m.translation.caption }}',
+                                description: '{{ m.translation.description }}'
+                            }{% if not forloop.last %},{% endif %}
+                            {% endfor %}
+                        ],
+
+                    {% elif content.Meta.verbose_name|lower == 'externer inhalt' %}
+                        type: '{{ content.type }}',
+                        response: {{ content.get_html_from_json }},
+
+                    {% elif content.Meta.verbose_name|lower == 'facebook image posts' %}
+                        user: '{{ content.user }}',
+
+                    {% elif content.Meta.verbose_name|lower == 'news panel' %}
+                        ticker: {% ticker_combined request "main" feincms_page 1 %},
+                    {% endif %}
+
+                    duration: {{ content.duration }}
+                }{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]
+        }
+    </script>
     
     <title>YouthHostel.ch Info Screen</title>
+</head>
 <body>
     <div id="container" data-path={{ feincms_page.get_absolute_url }}>
         <div id="weather">
