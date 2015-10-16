@@ -10,6 +10,9 @@ const paths = {
   css: {
     src: './screen/static/screen/css/src/**/*.css',
     dest: './screen/static/screen/css/dist/'
+  },
+  html: {
+    watch: './screen/templates/**/*.html'
   }
 }
 
@@ -30,6 +33,11 @@ gulp.task('browser-sync', ['foreman'], () => {
 })
 
 
+gulp.task('browser-reload', () => {
+  return browserSync.reload()
+})
+
+
 gulp.task('css', () => {
   return gulp.src(paths.css.src)
     .pipe( postcss([autoprefixer, cssnext]) )
@@ -40,4 +48,5 @@ gulp.task('css', () => {
 
 gulp.task('default', ['css', 'foreman', 'browser-sync'], () => {
   gulp.watch(paths.css.src, ['css'])
+  gulp.watch(paths.html.watch, ['browser-reload'])
 })
