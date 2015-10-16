@@ -142,6 +142,7 @@ INSTALLED_APPS = (
 
     'newswall',
     'mediavariations',
+    'markdown_deux',
 )
 
 LANGUAGES = (

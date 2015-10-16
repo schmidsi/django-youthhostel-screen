@@ -3,11 +3,12 @@ import babelify from 'babelify'
 import browserSync from 'browser-sync'
 import browserify from 'browserify'
 import cssnext from 'cssnext'
+import debowerify from 'debowerify'
 import foreman from 'gulp-foreman'
 import gulp from 'gulp'
 import postcss from 'gulp-postcss'
+import shell from 'gulp-shell'
 import through2 from 'through2'
-
 
 const paths = {
   css: {
@@ -20,17 +21,17 @@ const paths = {
   js: {
     src: './screen/static/screen/js/src/main.js',
     watch: './screen/static/screen/js/src/**/*.js',
-    dest: './screen/static/screen/js/dist/',
+    dest: './screen/static/screen/js/dist/'
   }
 }
 
+gulp.task('kill-python', shell.task(['killall python']))
 
-gulp.task('foreman', () => {
+gulp.task('foreman', ['kill-python'], () => {
   foreman({
     procfile: 'Procfile.dev'
   })
 })
-
 
 gulp.task('browser-sync', ['foreman'], () => {
   return browserSync.init({
@@ -40,33 +41,30 @@ gulp.task('browser-sync', ['foreman'], () => {
   })
 })
 
-
 gulp.task('browser-reload', () => {
   return browserSync.reload()
 })
 
-
 gulp.task('css', () => {
   return gulp.src(paths.css.src)
-    .pipe( postcss([autoprefixer, cssnext]) )
-    .pipe( gulp.dest(paths.css.dest) )
-    .pipe( browserSync.reload({stream: true}) )
+    .pipe(postcss([autoprefixer, cssnext]))
+    .pipe(gulp.dest(paths.css.dest))
+    .pipe(browserSync.reload({stream: true}))
 })
 
-
-gulp.task('browserify', () =>{
+gulp.task('browserify', () => {
   return gulp.src(paths.js.src)
-    .pipe( through2.obj( (file, enc, next) => {
+    .pipe(through2.obj((file, enc, next) => {
       return browserify(file.path, {debug: true})
-        .transform( babelify )
-        .bundle( (err, res) => {
-          file.contents = res
+        .transform(babelify)
+        .transform(debowerify)
+        .bundle((err, res) => {
+          file.contents = res || null
           next(err, file)
         })
     }))
-    .pipe( gulp.dest(paths.js.dest) )
+    .pipe(gulp.dest(paths.js.dest))
 })
-
 
 gulp.task('default', ['css', 'browserify', 'foreman', 'browser-sync'], () => {
   gulp.watch(paths.css.src, ['css'])

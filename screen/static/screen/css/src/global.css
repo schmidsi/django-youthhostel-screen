@@ -3,11 +3,13 @@
 html, body {
     color: white;
     height: 100%;
+    width: 100%;
     overflow: hidden;
     background-color: black;
     font-family: 'Akkurat-LightRegular', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
     font-size: 20px;
-    background-image: url(../../img/01-cover-image.png);
+    /*background-image: url(../../img/01-cover-image.png);*/
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
@@ -32,7 +34,23 @@ h1, h2 {
 
 .flex {
     display: flex;
-    justify-content: space-around;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+#container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 /* announcements */
@@ -102,6 +120,32 @@ h1, h2 {
   color: rgb(80, 145, 205);
 }
 
+.text {
+  position: absolute;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 3rem;
+  line-height: 1.5;
+}
+
+.text span:not(:empty) {
+  background-color: white;
+  color: black;
+  padding: 0 0.1rem;
+}
+
+.text-size-small {
+    font-size: 1em;
+}
+
+.text-size-medium {
+    font-size: 1.5em;
+}
+
+.text-size-large {
+    font-size: 2em;
+}
 
 /*******- possibly obsolete ***********/
 
@@ -153,31 +197,6 @@ div.image {
     font-size: 0.8em;
 }
 
-
-/* richtext */
-
-.text, .richtext {
-    text-align: center;
-    font-size: 1.3em;
-    font-weight: bold;
-    line-height: 1.3em;
-}
-
-.text.small {
-    font-size: 1em;
-}
-
-.text.medium {
-    font-size: 1.5em;
-}
-
-.text.large {
-    font-size: 2em;
-}
-
-.text p {
-    margin-bottom: 1em;
-}
 
 
 /* ticker */
