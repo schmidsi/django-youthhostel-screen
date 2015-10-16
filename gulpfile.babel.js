@@ -1,6 +1,17 @@
-import gulp from 'gulp'
-import foreman from 'gulp-foreman'
+import autoprefixer from 'autoprefixer'
 import browserSync from 'browser-sync'
+import cssnext from 'cssnext'
+import foreman from 'gulp-foreman'
+import gulp from 'gulp'
+import postcss from 'gulp-postcss'
+
+
+const paths = {
+  css: {
+    src: './screen/static/screen/css/src/**/*.css',
+    dest: './screen/static/screen/css/dist/'
+  }
+}
 
 
 gulp.task('foreman', () => {
@@ -11,7 +22,7 @@ gulp.task('foreman', () => {
 
 
 gulp.task('browser-sync', ['foreman'], () => {
-  browserSync.init({
+  return browserSync.init({
     proxy: 'http://localhost:2000',
     port: 8000,
     open: false
@@ -19,4 +30,14 @@ gulp.task('browser-sync', ['foreman'], () => {
 })
 
 
-gulp.task('default', ['foreman', 'browser-sync'])
+gulp.task('css', () => {
+  return gulp.src(paths.css.src)
+    .pipe( postcss([autoprefixer, cssnext]) )
+    .pipe( gulp.dest(paths.css.dest) )
+    .pipe( browserSync.reload({stream: true}) )
+})
+
+
+gulp.task('default', ['css', 'foreman', 'browser-sync'], () => {
+  gulp.watch(paths.css.src, ['css'])
+})
