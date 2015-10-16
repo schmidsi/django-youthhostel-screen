@@ -72,28 +72,19 @@
 </head>
 <body>
     <div id="container" data-path={{ feincms_page.get_absolute_url }}>
-        <div id="weather">
-            {% block weather %}
-                {% weather_widget '47.554189' '7.601553' 'ca' 'de' 'hourly' %}
-            {% endblock weather %}
-        </div>
-        <div id="announcements">
-            {% block announcements %}
-                <div class="dummy"></div>
-            {% endblock %}
-        </div>
-        <div id="content" data-currentcontent="-1">
-            {% block content %}
-                {# feincms_render_region feincms_page "main" request #}
-                <div class="dummy"></div>
-            {% endblock content %}
-        </div>
-        <div id="ticker">
-            {% block ticker %}
-                {% ticker_combined request "ticker" feincms_page 1 %}
-            {% endblock ticker %}
-        </div>
-				<canvas id="clock" class="CoolClock:chunkySwissOnBlack:50"></canvas>
+        <header class="flex">
+            <div id="weather">
+                {% block weather %}
+                    {% weather_widget '47.554189' '7.601553' 'ca' 'de' 'hourly' %}
+                {% endblock weather %}
+            </div>
+
+            <div id="announcements">
+                <div>Das ganze Jugi Team wünscht Ihnen einen guten Appetit!</div>
+            </div>
+            
+    		<canvas id="clock" class="CoolClock:swissRail:30"></canvas>
+        </header>
     </div>
     
 </body>
