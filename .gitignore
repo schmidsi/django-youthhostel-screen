@@ -15,3 +15,4 @@
 db.sqlite
 .idea
 .env
+node_modules/

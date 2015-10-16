@@ -1,14 +1,21 @@
 {
   "author": "Simon Schmid <simon@schmidsi.ch> (https://github.com/schmidsi)",
   "name": "django-youthhostel-screen",
+  "description": "helpers for frontend dev",
   "version": "0.0.0",
-  "homepage": "youthhostel-screen.herokuapp.com",
+  "homepage": "http://youthhostel-screen.herokuapp.com",
   "repository": {
     "type": "git",
     "url": "git://github.com/schmidsi/django-youthhostel-screen.git"
   },
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
+    "browser-sync": "^2.9.11",
+    "gulp": "^3.9.0",
+    "gulp-foreman": "^0.2.0"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": "*"
