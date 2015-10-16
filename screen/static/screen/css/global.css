@@ -41,18 +41,17 @@ h1, h2 {
     position: relative;
     right: 0px;
     color: white;
-    font-family: 'BodoniRegular', georgia, serif;
+    font-family: 'BodoniStdPosterItalic', georgia, serif;
     font-style: italic;
     font-size: 1.3rem;
+    -webkit-font-smoothing: antialiased;
     line-height: 1;
     background-color: rgb(80, 145, 205); /* PANTONE 279U */
     padding: 0.5rem 1rem;
-    border-bottom-right-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
     width: 33rem;
     height: 4rem;
-
-    opacity: 0.5;
 }
 
 #announcements:after {
