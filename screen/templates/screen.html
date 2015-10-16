@@ -22,7 +22,7 @@
     <title>YouthHostel.ch Info Screen</title>
 </head>
 <body>
-    <header class="flex space-around">
+    <header class="flex space-around head">
         <div id="weather">
           <canvas id="weather-icon"></canvas>
           <span data-hook='weather-temperature'>??</span>
@@ -45,6 +45,12 @@
       </div>
     </script>
 
+    <script type="text/template" id="media-template">
+      <div class="mediafile mediatype-<%- type %> media-cover-<%- cover %>" style='background-image: url(<%- url %>)'>
+
+      </div>
+    </script>
+
     <script>
         window.ScreenData = {
             location: "{{ feincms_page.location }}",
@@ -64,6 +70,15 @@
                       {% if content.Meta.verbose_name|lower == 'text' %}
                           text: '{{ content.text|markdown|escapejs }}',
                           size: '{{ content.size }}',
+
+                      {% elif content.Meta.verbose_name|lower == 'mediendatei' %}
+
+                          type: '{{ content.mediafile.type }}',
+                          url: '{{ content.mediafile.get_absolute_url }}',
+                          cover: {{ content.mediafile.cover|lower }},
+                          caption: '{{ content.mediafile.translation.caption }}',
+                          description: '{{ content.mediafile.translation.description }}'
+
 
                       {% elif content.Meta.verbose_name|lower == 'simple image gallery' %}
                           mediafiles: [

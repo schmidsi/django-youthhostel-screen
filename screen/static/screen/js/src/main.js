@@ -27,17 +27,10 @@ class Panels extends Backbone.Collection {
   }
 }
 
-class PanelView extends Backbone.View {
+class TextPanelView extends Backbone.View {
   constructor (options) {
     super(options)
-
-    switch (this.model.get('type')) {
-      case 'text':
-        this.template = _.template($('#text-template').html())
-        break
-      default:
-        console.warn('no template defined for', this.model.get('type'))
-    }
+    this.template = _.template($('#text-template').html())
   }
 
   render () {
@@ -46,6 +39,19 @@ class PanelView extends Backbone.View {
     let lines = pspans.split(/\r\n|\r|\n/g)
 
     data.textWrapped = '<span>' + lines.join('</span><br><span>') + '</span>'
+    this.$el.html(this.template(data))
+    return this
+  }
+}
+
+class MediaPanelView extends Backbone.View {
+  constructor (options) {
+    super(options)
+    this.template = _.template($('#media-template').html())
+  }
+
+  render () {
+    let data = this.model.toJSON().data
     this.$el.html(this.template(data))
     return this
   }
@@ -61,6 +67,7 @@ class Router extends Backbone.Router {
     }
 
     this.panels = options.panels
+    this.panelIndex = 0
 
     this._bindRoutes()
   }
@@ -69,10 +76,33 @@ class Router extends Backbone.Router {
     this.navigate('0', { trigger: true })
   }
 
-  showPanel (panel = 0) {
-    $('[data-hook~=panel-hook').html(
-      (new PanelView({ model: this.panels.at(panel) })).render().el
-    )
+  showPanel (panelIndex = 0) {
+    this.panelIndex = parseInt(panelIndex, 10)
+
+    let model = this.panels.at(panelIndex)
+    let view = null // superscoping
+
+    switch (model.get('type')) {
+      case 'text':
+        view = new TextPanelView({ model: model })
+        break
+      case 'mediendatei':
+        view = new MediaPanelView({ model: model })
+        break
+      default:
+        console.warn('no template defined for', this.model.get('type'))
+        return this
+    }
+
+    $('[data-hook~=panel-hook').html(view.render().el)
+  }
+
+  next () {
+    this.navigate((this.panelIndex + 1).toString(), { trigger: true })
+  }
+
+  prev () {
+    this.navigate((this.panelIndex - 1).toString(), { trigger: true })
   }
 }
 
@@ -85,4 +115,12 @@ $(() => {
   let router = new Router({ panels: panels })
 
   Backbone.history.start()
+
+  $(window).on('keyup', (e) => {
+    if (e.keyCode === 39) {
+      router.next()
+    } else if (e.keyCode === 37) {
+      router.prev()
+    }
+  })
 })

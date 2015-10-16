@@ -45,6 +45,12 @@ h1, h2 {
   align-items: center;
 }
 
+.head {
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
 #container {
   position: absolute;
   top: 0;
@@ -145,6 +151,17 @@ h1, h2 {
 
 .text-size-large {
     font-size: 2em;
+}
+
+.media-cover-true {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 /*******- possibly obsolete ***********/
