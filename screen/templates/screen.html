@@ -16,6 +16,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}screen/lib/coolclock/coolclock.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}screen/lib/coolclock/moreskins.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}screen/lib/skycons/skycons.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}screen/js/dist/main.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}screen/js/global.js"></script>
 
     <script>
@@ -75,7 +76,7 @@
 
             <div id="weather">
               <canvas id="weather-icon"></canvas>
-              <span>21°C</span>
+              <span data-hook='weather-temperature'>??</span>
             </div>
 
             <div id="announcements">

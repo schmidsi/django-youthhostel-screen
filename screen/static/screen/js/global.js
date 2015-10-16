@@ -1,37 +1,67 @@
-$(function() {
+/* global $, Skycons */
+
+$(function () {
   var skycons = new Skycons({color: 'rgb(80, 145, 205)'})
 
-  skycons.add('weather-icon', Skycons.PARTLY_CLOUDY_DAY)
+  skycons.add('weather-icon', Skycons.FOG)
   skycons.play()
 
-  var url = 'https://maps.googleapis.com/maps/api/geocode/json';
+  var url = 'https://maps.googleapis.com/maps/api/geocode/json'
   var options = {
     key: 'AIzaSyBfgQvdnxaPG86vH75V8HamSvyeUlURxT8',
     address: window.ScreenData.location
   }
 
-  $.get(url, options, function(data, status, xhr) {
-    console.log(data, status, xhr)
-  });
+  $.getJSON(url, options)
+    .then(function (data, status, xhr) {
+      if (!data.results || data.results.length === 0) {
+        console.warn('GEOCODE failed', window.ScreenData.location)
+        return false
+      }
+
+      var location = data.results[0].geometry.location
+      var url = 'https://api.forecast.io/forecast/d4c70212b090e44a4250da97aa6bb54f/'
+
+      url = url + location.lat + ',' + location.lng
+
+      return $.ajax({
+        type: 'GET',
+        url: url,
+        jsonp: 'callback',
+        dataType: 'jsonp',
+        data: {
+          units: 'si'
+        }
+      })
+
+    // return $.getJSON(url)
+    })
+    .then(function (data, status, xhr) {
+      skycons.set('weather-icon', data.currently.icon)
+      $('[data-hook~=weather-temperature]').text(data.currently.temperature + '°C')
+    })
+    .then(null, function (err) {
+      throw err
+    })
 })
 
 /*
 function getFacebookPost($el, region, container) {
     var user = $el.data('user'),
-        url = 'https://graph.facebook.com/' + user + '/posts/?fields=type,message,object_id&filter=type:photo&access_token=159457810754902|UqvcQEszzDvlLlft85FtuP2LWYo';
+        url = 'https://graph.facebook.com/' + user + '/posts/?fields=type,message,object_id&filter=type:photo&access_token=159457810754902|UqvcQEszzDvlLlft85FtuP2LWYo'
 
     $.get(url, function(json) {
         var last5Posts = json.data.slice(0, 10),
-            randomPost = last5Posts[parseInt(Math.random()*9)];
+            randomPost = last5Posts[parseInt(Math.random()*9)]
 
-        console.log(randomPost);
+        console.log(randomPost)
 
-        $el.find('.caption').text(randomPost.message);
+        $el.find('.caption').text(randomPost.message)
 
         $.get('https://graph.facebook.com/' + randomPost.object_id + '?access_token=159457810754902|UqvcQEszzDvlLlft85FtuP2LWYo', function(json) {
-            $el.css('background-image', 'url(' + json.images[0].source + ')');
-        });
+            $el.css('background-image', 'url(' + json.images[0].source + ')')
+        })
 
-    });
+    })
 }
 */
