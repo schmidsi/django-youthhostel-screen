@@ -15,9 +15,10 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
     <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}screen/js/slideshow.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}screen/lib/coolclock/coolclock.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}screen/lib/coolclock/moreskins.js"></script>
-    <!--<script type="text/javascript" src="{{ STATIC_URL }}screen/js/global.js"></script>-->
+    <script type="text/javascript" src="{{ STATIC_URL }}screen/lib/coolclock/coolclock.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}screen/lib/coolclock/moreskins.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}screen/lib/skycons/skycons.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}screen/js/global.js"></script>
 
     <script>
         window.ScreenData = {
@@ -73,17 +74,17 @@
 <body>
     <div id="container" data-path={{ feincms_page.get_absolute_url }}>
         <header class="flex">
+
             <div id="weather">
-                {% block weather %}
-                    {% weather_widget '47.554189' '7.601553' 'ca' 'de' 'hourly' %}
-                {% endblock weather %}
+              <canvas id="weather-icon"></canvas>
+              <span>21°C</span>
             </div>
 
             <div id="announcements">
                 <div>Das ganze Jugi Team wünscht Ihnen einen guten Appetit!</div>
             </div>
 
-    		<canvas id="clock" class="CoolClock:chunkySwiss:30"></canvas>
+    		    <canvas id="clock" class="CoolClock:chunkySwiss:30"></canvas>
         </header>
     </div>
 

@@ -43,20 +43,20 @@ h1, h2 {
 /* announcements */
 
 #announcements {
-    position: relative;
-    right: 0px;
-    color: white;
-    font-family: 'BodoniStdPosterItalic', georgia, serif;
-    font-style: italic;
-    font-size: 1.3rem;
-    -webkit-font-smoothing: antialiased;
-    line-height: 1;
-    background-color: rgb(80, 145, 205); /* PANTONE 279U */
-    padding: 0.5rem 1rem;
-    border-bottom-right-radius: 1rem;
-    border-bottom-left-radius: 1rem;
-    width: 33rem;
-    height: 4rem;
+  position: relative;
+  right: 0px;
+  color: white;
+  font-family: 'BodoniStdPosterItalic', georgia, serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.2;
+  background-color: rgb(80, 145, 205); /* PANTONE 279U */
+  padding: 0.3rem 1rem 0.7rem;
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  width: 60%;
+  max-width: 33rem;
 }
 
 #announcements:after {
@@ -71,30 +71,44 @@ h1, h2 {
     width: 0;
 }
 
+#clock {
+  position: relative;
+  top: 0.5rem;
+  background-color: white;
+  border-radius: 3rem;
+}
+
+#weather {
+  position: relative;
+  top: 0.5rem;
+  width: 3rem;
+  height: 3rem;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+
+#weather-icon {
+  position: relative;
+  top: 0.3rem;
+  left: -0.3rem;
+  width: 3.6rem;
+  height: 1.8rem;
+}
+
+#weather span {
+  font-size: 0.6rem;
+  line-height: 1;
+  position: absolute;
+  bottom: 0.1rem;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: rgb(80, 145, 205);
+}
+
 
 /*******- possibly obsolete ***********/
-
-
-#content {
-    top: 15%;
-    bottom: 15%;
-    left: 5%;
-    right: 5%;
-    overflow: hidden;
-    position: relative;
-    display: -moz-box;
-    -moz-box-pack: center;
-    -moz-box-align: center;
-}
-
-#content > div {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
-    right: 0px;
-}
-
 
 
 /* Simple gallery */
@@ -223,46 +237,3 @@ ul.ticker {
     }
 }
 */
-
-#clock {
-    background-color: white;
-    border-radius: 100px
-}
-
-/* weather */
-#weather {
-    width: 60px;
-    height: 60px;
-    overflow: hidden;
-}
-
-.weather-widget {
-    font-size: 0.8em;
-    line-height: 1.2em;
-}
-
-.weather-forecast, .weather-today {
-    width: 18%;
-    float: left;
-    margin-right: 1em;
-    text-align: center;
-}
-
-.weather-widget .humidity {
-    color: #aad6f3;
-    font-size: 0.7em;
-}
-
-.wi.big {
-    display: block;
-    font-size: 3.5em;
-    height: 1.2em;
-    width: 2em;
-    color: #ffffff;
-    text-shadow: 2px 2px 2px #5d8dcb;
-}
-
-.temperature {
-    margin-top: -1em;
-    font-weight: bold;
-}
