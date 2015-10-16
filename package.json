@@ -1,0 +1,16 @@
+{
+  "author": "Simon Schmid <simon@schmidsi.ch> (https://github.com/schmidsi)",
+  "name": "django-youthhostel-screen",
+  "version": "0.0.0",
+  "homepage": "youthhostel-screen.herokuapp.com",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/schmidsi/django-youthhostel-screen.git"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
