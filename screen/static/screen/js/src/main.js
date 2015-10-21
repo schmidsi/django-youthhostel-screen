@@ -77,9 +77,15 @@ class Router extends Backbone.Router {
   }
 
   showPanel (panelIndex = 0) {
-    this.panelIndex = parseInt(panelIndex, 10)
+    this.panelIndex = parseInt(panelIndex, 10) % (this.panels.length)
 
-    let model = this.panels.at(panelIndex)
+    while (this.panelIndex < 0) {
+      this.panelIndex = this.panels.length - panelIndex - 2
+    }
+
+    this.navigate(this.panelIndex.toString())
+
+    let model = this.panels.at(this.panelIndex)
     let view = null // superscoping
 
     switch (model.get('type')) {
@@ -90,7 +96,7 @@ class Router extends Backbone.Router {
         view = new MediaPanelView({ model: model })
         break
       default:
-        console.warn('no template defined for', this.model.get('type'))
+        console.warn('no template defined for', model.get('type'))
         return this
     }
 
