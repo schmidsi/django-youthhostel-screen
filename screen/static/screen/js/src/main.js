@@ -27,10 +27,26 @@ class Panels extends Backbone.Collection {
   }
 }
 
-class TextPanelView extends Backbone.View {
+class PanelBaseView extends Backbone.View {
+  attributes () {
+    return {
+      'data-hook': 'panel-hook'
+    }
+  }
+}
+
+class TextPanelView extends PanelBaseView {
   constructor (options) {
     super(options)
     this.template = _.template($('#text-template').html())
+  }
+
+  attributes () {
+    let attributes = super.attributes()
+
+    attributes.class = `text text-size-${ this.model.get('data').size } flex flex-center flex-grow`
+
+    return attributes
   }
 
   render () {
@@ -44,14 +60,41 @@ class TextPanelView extends Backbone.View {
   }
 }
 
-class MediaPanelView extends Backbone.View {
+class MediaPanelView extends PanelBaseView {
   constructor (options) {
     super(options)
-    this.template = _.template($('#media-template').html())
+
+    this.templateMeta = _.template($('#media-meta').html())
+
+    if (this.model.get('data').cover) {
+      this.template = _.template($('#media-template-cover').html())
+    } else {
+      this.template = _.template($('#media-template-contain').html())
+    }
+  }
+
+  attributes () {
+    let attributes = super.attributes()
+    let data = this.model.get('data')
+
+    attributes.class = `mediafile mediatype-${ data.type } media-cover-${ data.cover }`
+
+    if (data.cover) {
+      attributes.style = `background-image: url(${ data.url })`
+    }
+
+    return attributes
   }
 
   render () {
     let data = this.model.toJSON().data
+
+    if (data.caption || data.description || data.copyright) {
+      data.meta = this.templateMeta(data)
+    } else {
+      data.meta = ''
+    }
+
     this.$el.html(this.template(data))
     return this
   }
@@ -100,7 +143,7 @@ class Router extends Backbone.Router {
         return this
     }
 
-    $('[data-hook~=panel-hook').html(view.render().el)
+    $('[data-hook~=panel-hook]').replaceWith(view.render().el)
   }
 
   next () {

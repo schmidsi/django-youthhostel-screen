@@ -50,13 +50,26 @@ div {
   align-items: center;
 }
 
+.flex-grow {
+  flex-grow: 1;
+}
+
 .head {
-  position: absolute;
   width: 100%;
   z-index: 10;
 }
 
-#container {
+.flex-column {
+  flex-direction: column;
+}
+
+.bg-contain {
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.cover-parent {
   position: absolute;
   top: 0;
   left: 0;
@@ -136,7 +149,6 @@ div {
   text-align: center;
   height: 100%;
   width: 100%;
-  margin-top: 3rem;
   line-height: 1.5;
 }
 
@@ -169,13 +181,25 @@ div {
   background-position: center center;
 }
 
-.image-meta {
+.media-cover-false {
+  margin-top: 0.5rem;
+  flex-grow: 1;
+  position: relative;
+}
+
+.media-cover-false .image-meta {
+  background-color: white;
+  color: var(--accent-color);
+  padding: 0 13%;
+}
+
+.media-cover-true .image-meta {
   position: absolute;
   bottom: 8%;
   left: 13%;
 }
 
-.image-meta span:not(:empty) {
+.media-cover-true .image-meta span:not(:empty) {
   background-color: white;
   color: var(--accent-color);
   padding: 0 0.1rem;

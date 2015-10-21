@@ -22,6 +22,7 @@
     <title>YouthHostel.ch Info Screen</title>
 </head>
 <body>
+  <div id="container" class="flex flex-column cover-parent">
     <header class="flex space-around head">
         <div id="weather">
           <canvas id="weather-icon"></canvas>
@@ -35,24 +36,32 @@
         <canvas id="clock" class="CoolClock:chunkySwiss:30"></canvas>
     </header>
 
-    <div id="container" data-path={{ feincms_page.get_absolute_url }} data-hook='panel-hook'></div>
+    <div data-hook='panel-hook'></div>
+  </div>
 
     <script type="text/template" id="text-template">
-      <div class="text text-size-<%- size %> flex flex-center">
-        <div>
-          <%= textWrapped %>
-        </div>
+      <div>
+        <%= textWrapped %>
       </div>
     </script>
 
-    <script type="text/template" id="media-template">
-      <div class="mediafile mediatype-<%- type %> media-cover-<%- cover %>" style='background-image: url(<%- url %>)'>
-        <div class="image-meta">
-          <div class="caption"><span><b><%- caption %></b></span></div>
-          <div class="description"><span><%- description %></span></div>
-          <div class="copyright"><span><%- copyright %></span></div>
-        </div>
+    <script type="text/template" id="media-meta">
+      <div class="image-meta">
+        <div class="caption"><span><b><%- caption %></b></span></div>
+        <div class="description"><span><%- description %></span></div>
+        <div class="copyright"><span><%- copyright %></span></div>
+      </div>
+    </script>
 
+    <script type="text/template" id="media-template-cover">
+      <%= meta %>
+    </script>
+
+    <script type="text/template" id="media-template-contain">
+      <div class="cover-parent flex flex-column">
+        <div class="flex-grow bg-contain" style="background-image: url(<%- url %>)"></div>
+
+        <%= meta %>
       </div>
     </script>
 
@@ -82,8 +91,8 @@
                           url: '{{ content.mediafile.get_absolute_url }}',
                           cover: {{ content.mediafile.cover|lower }},
                           caption: '{{ content.mediafile.translation.caption }}',
-                          copyright: '{{ content.mediafile.translation.caption }}',
-                          description: '{{ content.mediafile.translation.description }}'
+                          description: '{{ content.mediafile.translation.description }}',
+                          copyright: '{{ content.mediafile.copyright }}'
 
 
                       {% elif content.Meta.verbose_name|lower == 'simple image gallery' %}
@@ -93,7 +102,7 @@
                                   url: '{{ m.get_absolute_url }}',
                                   cover: {{ m.cover|lower }},
                                   caption: '{{ m.translation.caption }}',
-                                  copyright: '{{ m.translation.caption }}',
+                                  copyright: '{{ m.copyright }}',
                                   description: '{{ m.translation.description }}'
                               }{% if not forloop.last %},{% endif %}
                               {% endfor %}
