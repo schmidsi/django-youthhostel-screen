@@ -38,7 +38,7 @@ $(function () {
     })
     .then(function (data, status, xhr) {
       skycons.set('weather-icon', data.currently.icon)
-      $('[data-hook~=weather-temperature]').text(data.currently.temperature + '°C')
+      $('[data-hook~=weather-temperature]').text(data.currently.temperature.toFixed() + '°C')
     })
     .then(null, function (err) {
       throw err

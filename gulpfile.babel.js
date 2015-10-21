@@ -25,7 +25,7 @@ const paths = {
   }
 }
 
-gulp.task('kill-python', shell.task(['killall python']))
+gulp.task('kill-python', shell.task(['killall python'], { ignoreErrors: true }))
 
 gulp.task('foreman', ['kill-python'], () => {
   foreman({
