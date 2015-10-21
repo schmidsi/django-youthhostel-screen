@@ -129,7 +129,7 @@ class Router extends Backbone.Router {
     this.navigate(this.panelIndex.toString())
 
     let model = this.panels.at(this.panelIndex)
-    let view = null // superscoping
+    let view
 
     switch (model.get('type')) {
       case 'text':
