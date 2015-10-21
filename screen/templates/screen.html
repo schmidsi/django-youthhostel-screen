@@ -47,6 +47,11 @@
 
     <script type="text/template" id="media-template">
       <div class="mediafile mediatype-<%- type %> media-cover-<%- cover %>" style='background-image: url(<%- url %>)'>
+        <div class="image-meta">
+          <div class="caption"><span><b><%- caption %></b></span></div>
+          <div class="description"><span><%- description %></span></div>
+          <div class="copyright"><span><%- copyright %></span></div>
+        </div>
 
       </div>
     </script>
@@ -77,6 +82,7 @@
                           url: '{{ content.mediafile.get_absolute_url }}',
                           cover: {{ content.mediafile.cover|lower }},
                           caption: '{{ content.mediafile.translation.caption }}',
+                          copyright: '{{ content.mediafile.translation.caption }}',
                           description: '{{ content.mediafile.translation.description }}'
 
 
@@ -87,6 +93,7 @@
                                   url: '{{ m.get_absolute_url }}',
                                   cover: {{ m.cover|lower }},
                                   caption: '{{ m.translation.caption }}',
+                                  copyright: '{{ m.translation.caption }}',
                                   description: '{{ m.translation.description }}'
                               }{% if not forloop.last %},{% endif %}
                               {% endfor %}

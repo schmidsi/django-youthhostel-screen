@@ -47,7 +47,7 @@ gulp.task('browser-reload', () => {
 
 gulp.task('css', () => {
   return gulp.src(paths.css.src)
-    .pipe(postcss([autoprefixer, cssnext]))
+    .pipe(postcss([cssnext()]))
     .pipe(gulp.dest(paths.css.dest))
     .pipe(browserSync.reload({stream: true}))
 })

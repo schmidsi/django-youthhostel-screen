@@ -1,3 +1,6 @@
+:root { /* PANTONE 279U */;
+}
+
 /* BASIC LAYOUT */
 
 html, body {
@@ -16,6 +19,11 @@ html, body {
     box-sizing: border-box;
 }
 
+b {
+  font-family: 'Akkurat-BoldRegular', Arial, sans-serif;
+  font-weight: normal;
+}
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -26,10 +34,6 @@ p {
 
 div {
 
-}
-
-h1, h2 {
-    color: #efe019;
 }
 
 .flex {
@@ -78,22 +82,30 @@ h1, h2 {
   color: white;
   font-family: 'BodoniStdPosterItalic', georgia, serif;
   font-style: italic;
+  font-size: 20px;
   font-size: 1.3rem;
   -webkit-font-smoothing: antialiased;
   line-height: 1.2;
-  background-color: rgb(80, 145, 205); /* PANTONE 279U */
+  background-color: rgb(80, 145, 205);
+  padding: 4px 16px 11px;
   padding: 0.3rem 1rem 0.7rem;
+  border-bottom-right-radius: 16px;
   border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 16px;
   border-bottom-left-radius: 1rem;
   width: 60%;
+  max-width: 528px;
   max-width: 33rem;
 }
 
 #announcements:after {
     content: "";
     position: absolute;
+    bottom: -16px;
     bottom: -1rem;
+    left: 32px;
     left: 2rem;
+    border-width: 16px 16px 0;
     border-width: 1rem 1rem 0;
     border-style: solid;
     border-color: rgb(80, 145, 205) transparent;
@@ -103,6 +115,7 @@ h1, h2 {
 
 #clock {
   position: relative;
+  top: 8px;
   top: 0.5rem;
   background-color: white;
   border-radius: 3rem;
@@ -110,8 +123,11 @@ h1, h2 {
 
 #weather {
   position: relative;
+  top: 8px;
   top: 0.5rem;
+  width: 48px;
   width: 3rem;
+  height: 48px;
   height: 3rem;
   overflow: hidden;
   background-color: white;
@@ -120,16 +136,22 @@ h1, h2 {
 
 #weather-icon {
   position: relative;
+  top: 4px;
   top: 0.3rem;
+  left: -4px;
   left: -0.3rem;
+  width: 57px;
   width: 3.6rem;
+  height: 28px;
   height: 1.8rem;
 }
 
 #weather span {
+  font-size: 9px;
   font-size: 0.6rem;
   line-height: 1;
   position: absolute;
+  bottom: 1px;
   bottom: 0.1rem;
   left: 0;
   width: 100%;
@@ -142,6 +164,7 @@ h1, h2 {
   text-align: center;
   height: 100%;
   width: 100%;
+  margin-top: 48px;
   margin-top: 3rem;
   line-height: 1.5;
 }
@@ -149,6 +172,7 @@ h1, h2 {
 .text span:not(:empty) {
   background-color: white;
   color: black;
+  padding: 0 1px;
   padding: 0 0.1rem;
 }
 
@@ -173,6 +197,26 @@ h1, h2 {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+.image-meta {
+  position: absolute;
+  bottom: 8%;
+  left: 13%;
+}
+
+.image-meta span:not(:empty) {
+  background-color: white;
+  color: rgb(80, 145, 205);
+  padding: 0 1px;
+  padding: 0 0.1rem;
+}
+
+.image-meta .copyright {
+  margin-top: 16px;
+  margin-top: 1rem;
+  font-size: 10px;
+  font-size: 0.65rem;
 }
 
 /*******- possibly obsolete ***********/
@@ -215,6 +259,7 @@ div.image {
     position: absolute;
     width: 100%;
     bottom: 0px;
+    background-color: #787878;
     background-color: rgba(120, 120, 120, 0.3);
     padding: 1em;
     text-shadow: 1px 1px 5px black;
