@@ -197,17 +197,29 @@ class ImageGalleryView extends PanelBaseView {
     this.subview = undefined
   }
 
-  renderNextImage () {
-    let subPanel = new Panel({ data: this.mediafiles[this.currentImageIndex] })
+/*
+this.currentView.$el.after(newView.render().el)
+    newView.hide()
 
-    if (this.subview) {
-      this.subview.remove()
-      delete this.subview
+    if (newView.loadAssets) {
+      newView.once('loaded', () => newView.fadeIn())
+    } else {
+      newView.fadeIn()
     }
+    this.currentView.fadeRemove()
+    this.currentView = newView
+*/
 
-    this.subView = new MediaPanelView({ model: subPanel })
+  renderNextImage () {
+    let newView = new MediaPanelView({
+      model: new Panel({ data: this.mediafiles[this.currentImageIndex] })
+    })
 
-    this.$el.html(this.subView.render().el)
+    this.$el.append(newView.render().el)
+    newView.hide()
+    newView.once('loaded', () => newView.fadeIn())
+    if (this.subview) this.subview.fadeRemove()
+    this.subview = newView
 
     this.currentImageIndex = (this.currentImageIndex + 1) % this.mediafiles.length
 
