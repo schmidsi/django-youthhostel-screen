@@ -41,7 +41,7 @@ gulp.task('browser-sync', ['foreman'], () => {
   })
 })
 
-gulp.task('browser-reload', () => {
+gulp.task('browser-reload', ['browserify'], () => {
   return browserSync.reload()
 })
 

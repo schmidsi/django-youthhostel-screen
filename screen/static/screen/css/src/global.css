@@ -182,9 +182,12 @@ div {
 }
 
 .media-cover-false {
-  margin-top: 0.5rem;
   flex-grow: 1;
   position: relative;
+}
+
+.media-cover-false .bg-contain {
+  margin-top: 0.5rem;
 }
 
 .media-cover-false .image-meta {

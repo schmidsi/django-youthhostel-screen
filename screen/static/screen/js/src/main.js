@@ -1,8 +1,12 @@
 import _ from 'underscore'
 import $ from 'jquery'
 import Backbone from 'backbone'
+import ui from 'popmotion'
 
 window.jQuery = window.$ = $
+
+const FADE_DURATION = 1000
+const GALLERY_INTERVAL = 10000
 
 let Panel = Backbone.Model.extend({
   defaults: {
@@ -28,10 +32,77 @@ class Panels extends Backbone.Collection {
 }
 
 class PanelBaseView extends Backbone.View {
+  constructor (options) {
+    super(options)
+
+    // if true, it must fire a 'loaded' event after all assets are loaded
+    this.loadAssets = false
+  }
+
   attributes () {
     return {
       'data-hook': 'panel-hook'
     }
+  }
+
+  fixDimensions () {
+    this.rect = this.el.getBoundingClientRect()
+    this.rect.position = 'absolute'
+    this.initialStyle = this.$el.attr('style')
+    this.$el.css(this.rect)
+  }
+
+  releaseDimensions () {
+    this.$el.attr('style', this.initialStyle)
+    this.$el.css('opacity', 1)
+  }
+
+  hide () {
+    this.$el.css('opacity', 0)
+  }
+
+  fadeRemove (onComplete = () => {}) {
+    this.fixDimensions()
+
+    let actor = new ui.Actor({
+      element: this.el,
+      values: {
+        opacity: 1
+      }
+    })
+
+    actor.start(new ui.Tween({
+      values: {
+        opacity: 0
+      },
+      duration: FADE_DURATION,
+      onComplete: () => {
+        this.remove()
+        onComplete()
+      }
+    }))
+  }
+
+  fadeIn (onComplete = () => {}) {
+    this.fixDimensions()
+
+    let actor = new ui.Actor({
+      element: this.el,
+      values: {
+        opacity: 0
+      }
+    })
+
+    actor.start(new ui.Tween({
+      values: {
+        opacity: 1
+      },
+      duration: FADE_DURATION,
+      onComplete: () => {
+        this.releaseDimensions()
+        onComplete()
+      }
+    }))
   }
 }
 
@@ -65,6 +136,7 @@ class MediaPanelView extends PanelBaseView {
     super(options)
 
     this.templateMeta = _.template($('#media-meta').html())
+    this.loadAssets = true
 
     if (this.model.get('data').cover) {
       this.template = _.template($('#media-template-cover').html())
@@ -79,10 +151,6 @@ class MediaPanelView extends PanelBaseView {
 
     attributes.class = `mediafile mediatype-${ data.type } media-cover-${ data.cover }`
 
-    if (data.cover) {
-      attributes.style = `background-image: url(${ data.url })`
-    }
-
     return attributes
   }
 
@@ -95,8 +163,67 @@ class MediaPanelView extends PanelBaseView {
       data.meta = ''
     }
 
+    // HACK: wait for image to be loaded
+    // via: http://stackoverflow.com/questions/5057990/how-can-i-check-if-a-background-image-is-loaded
+    let self = this
+    $('<img />').attr('src', data.url).load(function () {
+      $(this).remove()
+
+      let $target
+
+      if (data.cover) {
+        $target = self.$el
+      } else {
+        $target = self.$('[data-hook=bg-image]')
+      }
+
+      $target.css('background-image', `url(${ data.url })`)
+
+      self.trigger('loaded')
+    })
+
     this.$el.html(this.template(data))
+
     return this
+  }
+}
+
+class ImageGalleryView extends PanelBaseView {
+  constructor (options) {
+    super(options)
+
+    this.currentImageIndex = 0
+    this.mediafiles = this.model.get('data').mediafiles
+    this.subview = undefined
+  }
+
+  renderNextImage () {
+    let subPanel = new Panel({ data: this.mediafiles[this.currentImageIndex] })
+
+    if (this.subview) {
+      this.subview.remove()
+      delete this.subview
+    }
+
+    this.subView = new MediaPanelView({ model: subPanel })
+
+    this.$el.html(this.subView.render().el)
+
+    this.currentImageIndex = (this.currentImageIndex + 1) % this.mediafiles.length
+
+    return this
+  }
+
+  render () {
+    this.interval = window.setInterval(this.renderNextImage.bind(this), GALLERY_INTERVAL)
+
+    return this.renderNextImage()
+  }
+
+  remove () {
+    super.remove()
+
+    window.clearInterval(this.interval)
   }
 }
 
@@ -113,6 +240,8 @@ class Router extends Backbone.Router {
     this.panelIndex = 0
 
     this._bindRoutes()
+
+    this.currentView = new PanelBaseView({ el: $('[data-hook~=panel-hook]').get() })
   }
 
   default () {
@@ -129,21 +258,33 @@ class Router extends Backbone.Router {
     this.navigate(this.panelIndex.toString())
 
     let model = this.panels.at(this.panelIndex)
-    let view
+    let newView
 
     switch (model.get('type')) {
       case 'text':
-        view = new TextPanelView({ model: model })
+        newView = new TextPanelView({ model: model })
         break
       case 'mediendatei':
-        view = new MediaPanelView({ model: model })
+        newView = new MediaPanelView({ model: model })
+        break
+      case 'simple image gallery':
+        newView = new ImageGalleryView({ model: model })
         break
       default:
         console.warn('no template defined for', model.get('type'))
         return this
     }
 
-    $('[data-hook~=panel-hook]').replaceWith(view.render().el)
+    this.currentView.$el.after(newView.render().el)
+    newView.hide()
+
+    if (newView.loadAssets) {
+      newView.once('loaded', () => newView.fadeIn())
+    } else {
+      newView.fadeIn()
+    }
+    this.currentView.fadeRemove()
+    this.currentView = newView
   }
 
   next () {

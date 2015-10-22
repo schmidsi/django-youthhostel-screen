@@ -218,13 +218,16 @@ div {
 }
 
 .media-cover-false {
-  margin-top: 8px;
-  margin-top: 0.5rem;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
   position: relative;
+}
+
+.media-cover-false .bg-contain {
+  margin-top: 8px;
+  margin-top: 0.5rem;
 }
 
 .media-cover-false .image-meta {
