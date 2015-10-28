@@ -20,9 +20,10 @@ export default class ImageGalleryView extends PanelBaseView {
 
     this.$el.append(newView.render().el)
     newView.hide()
-    newView.once('loaded', () => newView.fadeIn())
-    if (this.subview) this.subview.fadeRemove()
-    this.subview = newView
+    newView.once('loaded', () => newView.fadeIn(() => {
+      if (this.subview) this.subview.fadeRemove()
+      this.subview = newView
+    }))
 
     this.currentImageIndex = (this.currentImageIndex + 1) % this.mediafiles.length
 

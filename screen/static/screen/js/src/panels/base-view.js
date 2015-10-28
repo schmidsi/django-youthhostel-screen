@@ -27,7 +27,7 @@ export default class PanelBaseView extends Backbone.View {
       }
     })
 
-    actor.start(new ui.Tween({
+    return actor.start(new ui.Tween({
       values: {
         opacity: 0
       },
@@ -47,7 +47,7 @@ export default class PanelBaseView extends Backbone.View {
       }
     })
 
-    actor.start(new ui.Tween({
+    return actor.start(new ui.Tween({
       values: {
         opacity: 1
       },

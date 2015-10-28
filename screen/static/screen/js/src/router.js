@@ -5,6 +5,7 @@ import PanelBaseView from './panels/base-view'
 import TextPanelView from './panels/text-view'
 import MediaPanelView from './panels/media-view'
 import ImageGalleryView from './panels/gallery-view'
+import EmbedlyView from './panels/embedly-view'
 
 export default class Router extends Backbone.Router {
   constructor (options) {
@@ -50,6 +51,9 @@ export default class Router extends Backbone.Router {
       case 'simple image gallery':
         newView = new ImageGalleryView({ model: model })
         break
+      case 'externer inhalt':
+        newView = new EmbedlyView({ model: model })
+        break
       default:
         console.warn('no template defined for', model.get('type'))
         return this
@@ -59,12 +63,16 @@ export default class Router extends Backbone.Router {
     newView.hide()
 
     if (newView.loadAssets) {
-      newView.once('loaded', () => newView.fadeIn())
+      newView.once('loaded', () => {
+        newView.fadeIn()
+        this.currentView.fadeRemove()
+        this.currentView = newView
+      })
     } else {
       newView.fadeIn()
+      this.currentView.fadeRemove()
+      this.currentView = newView
     }
-    this.currentView.fadeRemove()
-    this.currentView = newView
   }
 
   next () {

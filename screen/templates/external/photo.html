@@ -1,3 +1,2 @@
-<p>
-    <img src="{{ response.url }}" alt="{{ response.description }}" />
-</p>
+{% load jsonify %}
+{{ response|jsonify|safe }}

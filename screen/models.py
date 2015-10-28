@@ -40,7 +40,7 @@ Page.register_extension(page_location)
 #Page.create_content_type(RichTextContent, regions=('main',), cleanse=cleanse_html)
 Page.create_content_type(MediaFileContent, regions=('main',), TYPE_CHOICES=(('default', _('default')),))
 Page.create_content_type(OembedContent, regions=('main',), TYPE_CHOICES=[
-    ('default', _('default'), {'width' : 922, 'heigth' : 491, 'autoplay': 'true', 'key': '3fa8f41c4dd64ca3baabbd1d712e8c8b'})
+    ('default', _('default'), {'autoplay': 'true', 'key': '3fa8f41c4dd64ca3baabbd1d712e8c8b'})
 ])
 Page.create_content_type(TextContent, regions=('main',))
 Page.create_content_type(SimpleGalleryContent, regions=('main',))

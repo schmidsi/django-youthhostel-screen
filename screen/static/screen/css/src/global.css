@@ -148,6 +148,10 @@ div {
   color: rgb(80, 145, 205);
 }
 
+.content {
+  margin-top: 0.5rem;
+}
+
 .text {
   position: absolute;
   text-align: center;
@@ -191,10 +195,6 @@ div {
   width: 100%;
 }
 
-.media-cover-false .bg-contain {
-  margin-top: 0.5rem;
-}
-
 .media-cover-false .image-meta {
   background-color: white;
   color: var(--accent-color);
@@ -205,6 +205,7 @@ div {
   position: absolute;
   bottom: 8%;
   left: 13%;
+  width: 74%;
 }
 
 .media-cover-true .image-meta span:not(:empty) {
@@ -216,6 +217,11 @@ div {
 .image-meta .copyright {
   margin-top: 1rem;
   font-size: 0.65rem;
+}
+
+.embedly iframe {
+  height: 100%;
+  width: 100%;
 }
 
 /*******- possibly obsolete ***********/
