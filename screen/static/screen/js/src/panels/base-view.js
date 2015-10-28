@@ -9,6 +9,20 @@ export default class PanelBaseView extends Backbone.View {
 
     // if true, it must fire a 'loaded' event after all assets are loaded
     this.loadAssets = false
+
+    if (this.model) {
+      this.data = this.model.toJSON().data
+      this.remaining = this.model.get('duration')
+      this.updateProgressInterval = window.setInterval(() => this.updateProgress(), 1000)
+    }
+
+    this.on('progress', (progress) => {
+      if (progress >= 1) this.trigger('finished')
+    })
+
+    this.on('finished', () => {
+      window.clearInterval(this.updateProgressInterval)
+    })
   }
 
   attributes () {
@@ -20,6 +34,8 @@ export default class PanelBaseView extends Backbone.View {
   }
 
   fadeRemove (onComplete = () => {}) {
+    window.clearInterval(this.updateProgressInterval)
+
     let actor = new ui.Actor({
       element: this.el,
       values: {
@@ -56,5 +72,15 @@ export default class PanelBaseView extends Backbone.View {
         onComplete()
       }
     }))
+  }
+
+  updateProgress () {
+    this.remaining--
+    this.trigger('progress', 1 - this.remaining / this.model.get('duration'))
+  }
+
+  remove () {
+    window.clearInterval(this.updateProgressInterval)
+    super.remove()
   }
 }

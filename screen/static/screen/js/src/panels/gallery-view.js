@@ -9,7 +9,7 @@ export default class ImageGalleryView extends PanelBaseView {
     super(options)
 
     this.currentImageIndex = 0
-    this.mediafiles = this.model.get('data').mediafiles
+    this.mediafiles = this.data.mediafiles
     this.subview = undefined
   }
 

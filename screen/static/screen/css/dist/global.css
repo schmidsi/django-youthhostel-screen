@@ -98,6 +98,15 @@ div {
   position: relative;
 }
 
+.progress {
+  position: fixed;
+  bottom: 0;
+  height: 1px;
+  left: 0;
+  width: 33%;
+  background-color: rgb(80, 145, 205);
+}
+
 /* announcements */
 
 #announcements {

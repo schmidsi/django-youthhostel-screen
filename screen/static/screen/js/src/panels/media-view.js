@@ -10,7 +10,7 @@ export default class MediaPanelView extends PanelBaseView {
     this.templateMeta = _.template($('#media-meta').html())
     this.loadAssets = true
 
-    if (this.model.get('data').cover) {
+    if (this.data.cover) {
       this.template = _.template($('#media-template-cover').html())
     } else {
       this.template = _.template($('#media-template-contain').html())
@@ -19,7 +19,7 @@ export default class MediaPanelView extends PanelBaseView {
 
   attributes () {
     let attributes = super.attributes()
-    let data = this.model.get('data')
+    let data = this.model.toJSON().data
 
     attributes.class = `mediafile mediatype-${ data.type } media-cover-${ data.cover }`
 
@@ -27,7 +27,9 @@ export default class MediaPanelView extends PanelBaseView {
   }
 
   render () {
-    let data = this.model.toJSON().data
+    window.clearInterval(this.updateProgressInterval)
+
+    let data = this.data
 
     if (data.caption || data.description || data.copyright) {
       data.meta = this.templateMeta(data)
@@ -52,6 +54,7 @@ export default class MediaPanelView extends PanelBaseView {
       $target.css('background-image', `url(${ data.url })`)
 
       self.trigger('loaded')
+      self.updateProgressInterval = window.setInterval(() => self.updateProgress(), 1000)
     })
 
     this.$el.html(this.template(data))

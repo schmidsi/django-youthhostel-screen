@@ -7,6 +7,8 @@ import MediaPanelView from './panels/media-view'
 import ImageGalleryView from './panels/gallery-view'
 import EmbedlyView from './panels/embedly-view'
 
+import ProgressView from './progress'
+
 export default class Router extends Backbone.Router {
   constructor (options) {
     super(options)
@@ -23,6 +25,7 @@ export default class Router extends Backbone.Router {
 
     this.$hook = $('[data-hook~=panel-hook]')
     this.currentView = new PanelBaseView()
+    this.progress = new ProgressView({ el: $('[data-hook~=progress]').get() })
   }
 
   default () {
@@ -62,13 +65,18 @@ export default class Router extends Backbone.Router {
     this.$hook.append(newView.render().el)
     newView.hide()
 
+    newView.on('progress', this.progress.update.bind(this.progress))
+    newView.on('finished', this.next.bind(this))
+
     if (newView.loadAssets) {
       newView.once('loaded', () => {
+        this.progress.reset()
         newView.fadeIn()
         this.currentView.fadeRemove()
         this.currentView = newView
       })
     } else {
+      this.progress.reset()
       newView.fadeIn()
       this.currentView.fadeRemove()
       this.currentView = newView

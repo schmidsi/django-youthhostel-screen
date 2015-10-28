@@ -27,14 +27,14 @@ def content_timing_extension(*content_classes):
 
         cls.add_to_class('priority', models.PositiveIntegerField(default=1,
             choices=((1, 'Tief'), (2, 'Mittel'), (3, 'Hoch')) ))
-        
+
         cls.add_to_class('morning', models.BooleanField('Morgen (06:00-10:00)', default=True))
         cls.add_to_class('noon', models.BooleanField('Mittag (10:00-13:30)', default=True))
         cls.add_to_class('afternoon', models.BooleanField('Nachmittag (13:30-17:00)', default=True))
         cls.add_to_class('evening', models.BooleanField('Abend (17:00-23:00)', default=True))
         cls.add_to_class('night', models.BooleanField('Nacht (23:00-06:00)', default=True))
-        
-        cls.add_to_class('duration', models.PositiveIntegerField('(Maximale) Anzeigedauer in Sekunden.', default=DEFAULT_DURATION))
+
+        cls.add_to_class('duration', models.PositiveIntegerField('Anzeigedauer in Sekunden.', default=DEFAULT_DURATION))
 
         cls.add_to_class('feincms_item_editor_inline', create_item_admin(prefields))
 

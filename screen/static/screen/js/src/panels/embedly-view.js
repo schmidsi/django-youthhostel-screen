@@ -12,13 +12,11 @@ export default class EmbedlyView extends PanelBaseView {
     super(options)
 
     this.loadAssets = true
-
-    this.data = this.model.toJSON().data
   }
 
   attributes () {
     let attributes = super.attributes()
-    let data = this.model.get('data')
+    let data = this.model.toJSON().data
 
     attributes.class = `embedly embedly-${ data.response.type } cover-parent`
 
@@ -39,6 +37,8 @@ export default class EmbedlyView extends PanelBaseView {
   }
 
   renderVideo () {
+    window.clearInterval(this.updateProgressInterval)
+
     this.template = _.template($('#embedly-template').html())
 
     this.$el.html(this.template(this.data))
@@ -48,10 +48,10 @@ export default class EmbedlyView extends PanelBaseView {
 
     this.player.on('ready', () => {
       this.trigger('loaded')
+    })
 
-      this.player.getDuration((duration) => {
-        console.log(duration)
-      })
+    this.player.on('timeupdate', (data) => {
+      this.trigger('progress', data.seconds / data.duration)
     })
 
     return this

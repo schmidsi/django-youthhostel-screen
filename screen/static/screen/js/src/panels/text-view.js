@@ -18,12 +18,11 @@ export default class TextPanelView extends PanelBaseView {
   }
 
   render () {
-    let data = this.model.toJSON().data
-    let pspans = data.text.replace(/<p>/g, '').replace(/<\/p>/g, '')
+    let pspans = this.data.text.replace(/<p>/g, '').replace(/<\/p>/g, '')
     let lines = pspans.split(/\r\n|\r|\n/g)
 
-    data.textWrapped = '<span>' + lines.join('</span><br><span>') + '</span>'
-    this.$el.html(this.template(data))
+    this.data.textWrapped = '<span>' + lines.join('</span><br><span>') + '</span>'
+    this.$el.html(this.template(this.data))
     return this
   }
 }
