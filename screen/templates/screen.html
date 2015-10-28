@@ -36,7 +36,7 @@
         <canvas id="clock" class="CoolClock:chunkySwiss:30"></canvas>
     </header>
 
-    <div data-hook='panel-hook'></div>
+    <div data-hook='panel-hook' class="flex-grow relative"></div>
   </div>
 
     <script type="text/template" id="text-template">
@@ -100,6 +100,7 @@
                               {% for m in content.category.mediafile_set.all %}
                               {
                                   url: '{{ m.get_absolute_url }}',
+                                  type: '{{ m.type }}',
                                   cover: {{ m.cover|lower }},
                                   caption: '{{ m.translation.caption }}',
                                   copyright: '{{ m.copyright }}',

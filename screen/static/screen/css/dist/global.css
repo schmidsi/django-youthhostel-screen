@@ -94,6 +94,10 @@ div {
   width: 100%;
 }
 
+.relative {
+  position: relative;
+}
+
 /* announcements */
 
 #announcements {
@@ -207,7 +211,7 @@ div {
 }
 
 .media-cover-true {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;
@@ -218,11 +222,9 @@ div {
 }
 
 .media-cover-false {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  position: relative;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 .media-cover-false .bg-contain {
