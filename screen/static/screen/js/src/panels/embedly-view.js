@@ -10,8 +10,6 @@ import { Panel } from './base-model'
 export default class EmbedlyView extends PanelBaseView {
   constructor (options) {
     super(options)
-
-    this.loadAssets = true
   }
 
   attributes () {

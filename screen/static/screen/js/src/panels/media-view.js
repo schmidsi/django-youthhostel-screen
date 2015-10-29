@@ -8,7 +8,6 @@ export default class MediaPanelView extends PanelBaseView {
     super(options)
 
     this.templateMeta = _.template($('#media-meta').html())
-    this.loadAssets = true
 
     if (this.data.cover) {
       this.template = _.template($('#media-template-cover').html())

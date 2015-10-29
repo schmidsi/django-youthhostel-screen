@@ -14,18 +14,25 @@ export default class ImageGalleryView extends PanelBaseView {
   }
 
   renderNextImage () {
+    if (this.currentImageIndex >= this.mediafiles.length) {
+      return this.trigger('finished')
+    }
+
     let newView = new MediaPanelView({
       model: new Panel({ data: this.mediafiles[this.currentImageIndex] })
     })
 
-    this.$el.append(newView.render().el)
-    newView.hide()
     newView.once('loaded', () => newView.fadeIn(() => {
       if (this.subview) this.subview.fadeRemove()
       this.subview = newView
+      this.trigger('loaded')
+      this.remaining = (GALLERY_INTERVAL / 1000)
     }))
 
-    this.currentImageIndex = (this.currentImageIndex + 1) % this.mediafiles.length
+    this.$el.append(newView.render().el)
+    newView.hide()
+
+    this.currentImageIndex = this.currentImageIndex + 1
 
     return this
   }
@@ -36,9 +43,16 @@ export default class ImageGalleryView extends PanelBaseView {
     return this.renderNextImage()
   }
 
+  updateProgress () {
+    this.remaining--
+    let progress = 1 - (this.remaining / (GALLERY_INTERVAL / 1000))
+
+    console.log(progress)
+    this.trigger('progress', progress)
+  }
+
   remove () {
     super.remove()
-
     window.clearInterval(this.interval)
   }
 }

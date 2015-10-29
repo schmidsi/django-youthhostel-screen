@@ -23,6 +23,7 @@ export default class TextPanelView extends PanelBaseView {
 
     this.data.textWrapped = '<span>' + lines.join('</span><br><span>') + '</span>'
     this.$el.html(this.template(this.data))
+    self.trigger('loaded')
     return this
   }
 }

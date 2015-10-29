@@ -3,22 +3,21 @@ import ui from 'popmotion'
 
 const FADE_DURATION = 2000
 
+/*
+  Triggers 'loaded', as soon as all assets are loaded. If no assets have to
+  be loaded, trigger loaded after rendering
+*/
 export default class PanelBaseView extends Backbone.View {
   constructor (options) {
     super(options)
 
-    // if true, it must fire a 'loaded' event after all assets are loaded
-    this.loadAssets = false
-
     if (this.model) {
       this.data = this.model.toJSON().data
       this.remaining = this.model.get('duration')
-      this.updateProgressInterval = window.setInterval(() => this.updateProgress(), 1000)
+      this.updateProgressInterval = window.setInterval(() => {
+        this.updateProgress()
+      }, 1000)
     }
-
-    this.on('progress', (progress) => {
-      if (progress >= 1) this.trigger('finished')
-    })
 
     this.on('finished', () => {
       window.clearInterval(this.updateProgressInterval)
@@ -76,7 +75,9 @@ export default class PanelBaseView extends Backbone.View {
 
   updateProgress () {
     this.remaining--
-    this.trigger('progress', 1 - this.remaining / this.model.get('duration'))
+    let progress = 1 - this.remaining / this.model.get('duration')
+    if (progress >= 1) this.trigger('finished')
+    this.trigger('progress', progress)
   }
 
   remove () {

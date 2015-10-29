@@ -62,25 +62,18 @@ export default class Router extends Backbone.Router {
         return this
     }
 
-    this.$hook.append(newView.render().el)
-    newView.hide()
-
     newView.on('progress', this.progress.update.bind(this.progress))
     newView.on('finished', this.next.bind(this))
+    newView.on('loaded', this.progress.reset.bind(this.progress))
 
-    if (newView.loadAssets) {
-      newView.once('loaded', () => {
-        this.progress.reset()
-        newView.fadeIn()
-        this.currentView.fadeRemove()
-        this.currentView = newView
-      })
-    } else {
-      this.progress.reset()
+    newView.once('loaded', () => {
       newView.fadeIn()
       this.currentView.fadeRemove()
       this.currentView = newView
-    }
+    })
+
+    this.$hook.append(newView.render().el)
+    newView.hide()
   }
 
   next () {
