@@ -1,4 +1,3 @@
-import autoprefixer from 'autoprefixer'
 import babelify from 'babelify'
 import browserSync from 'browser-sync'
 import browserify from 'browserify'
@@ -47,15 +46,15 @@ gulp.task('browser-reload', ['browserify'], () => {
 
 gulp.task('css', () => {
   return gulp.src(paths.css.src)
-    .pipe(postcss([cssnext()]))
+    .pipe(postcss([ cssnext() ]))
     .pipe(gulp.dest(paths.css.dest))
-    .pipe(browserSync.reload({stream: true}))
+    .pipe(browserSync.reload({ stream: true }))
 })
 
 gulp.task('browserify', () => {
   return gulp.src(paths.js.src)
     .pipe(through2.obj((file, enc, next) => {
-      return browserify(file.path, {debug: true})
+      return browserify(file.path, { debug: true })
         .transform(babelify)
         .transform(debowerify)
         .bundle((err, res) => {
