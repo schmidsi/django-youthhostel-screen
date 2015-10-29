@@ -19,7 +19,7 @@ export default class FacebookView extends PanelBaseView {
     .then((response, status, xhr) => {
       let gallery = { mediafiles: [] }
 
-      response.data.slice(0, 5).forEach(photo => {
+      response.data.slice(0, 10).forEach(photo => {
         gallery.mediafiles.push({
           url: photo.images[0].source,
           type: 'image',

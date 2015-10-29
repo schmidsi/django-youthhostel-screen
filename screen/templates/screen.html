@@ -75,6 +75,14 @@
       <iframe src="<%= response.url %>">
     </script>
 
+    <script type="text/template" id="news-template">
+      <div class="news-item">
+        <div><span><b><%= title %></b></span></div>
+        <div class="news-body"><%= body %></div>
+        <div><span><small><%= source %> - <%= timestamp %></small></span></div>
+      </div>
+    </script>
+
     <script>
         window.ScreenData = {
             location: "{{ feincms_page.location }}",

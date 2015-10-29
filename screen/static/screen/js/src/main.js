@@ -21,6 +21,8 @@ $(() => {
       router.next()
     } else if (e.keyCode === 37) {
       router.prev()
+    } else if (e.keyCode === 32) {
+      router.startStop()
     }
   })
 })

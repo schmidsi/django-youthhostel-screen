@@ -32,6 +32,10 @@ p {
     margin-bottom: 0.5em;
 }
 
+small {
+  font-size: 0.8em;
+}
+
 div {
 
 }
@@ -273,108 +277,30 @@ div {
   width: 100%;
 }
 
-/*******- possibly obsolete ***********/
-
-
-/* Simple gallery */
-
-.simplegallery {
-    position: relative;
+.news {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
-div.image {
-    background-color: black;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
+.news-item {
+  width: 80%;
 }
 
-.simplegallery div.image {
-    opacity: 0;
-
-    -moz-transition: opacity 3s ease-in;
+.news-item span:not(:empty) {
+  background-color: white;
+  color: black;
+  padding: 0 1px;
+  padding: 0 0.1rem;
 }
 
-.simplegallery div.image.show {
-    opacity: 1.0;
+.news-body {
+  background-color: white;
+  color: black;
+  padding: 1px;
+  padding: 0.1rem;
 }
 
-.simplegallery, div.image {
-    height: 100%;
-    width: 100%;
+.news-body p:last-of-type {
+  margin-bottom: 0;
 }
-
-.image .description {
-    position: absolute;
-    width: 100%;
-    bottom: 0px;
-    background-color: #787878;
-    background-color: rgba(120, 120, 120, 0.3);
-    padding: 1em;
-    text-shadow: 1px 1px 5px black;
-}
-
-.image .copyright {
-    color: #aad6f3;
-    font-size: 0.8em;
-}
-
-
-
-/* ticker */
-
-#ticker {
-    bottom: 0em;
-    overflow: hidden;
-    width: 90%;
-    height: 4.0em;
-    font-size: 1.2em;
-}
-
-ul.ticker {
-    position: relative;
-    list-style-type: square;
-}
-
-.ticker li {
-    position: absolute;
-    top: -4em;
-    left: 1px;
-    padding-left: 1em;
-    opacity: 0;
-
-    -moz-transition: all 1s ease-in;
-}
-
-.ticker li.show {
-    opacity: 1.0;
-    top: 1px;
-}
-
-.ticker .copyright {
-    font-size: 0.8em;
-    color: #5d8dcb;
-    margin-left: 0.6em;
-}
-
-.ticker .date {
-    font-size: 0.7em;
-    color: #9f970f;
-    margin-left: 0.6em;
-}
-
-/*
-@-moz-keyframes ticker {
-    from {
-        left: 10%;
-    }
-    to {
-        left: -20%;
-    }
-}
-*/
