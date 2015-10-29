@@ -50,6 +50,7 @@ export default class ImageGalleryView extends PanelBaseView {
   }
 
   remove () {
+    this.subview.remove()
     super.remove()
     window.clearInterval(this.interval)
   }

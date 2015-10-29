@@ -6,6 +6,7 @@ import TextPanelView from './panels/text-view'
 import MediaPanelView from './panels/media-view'
 import ImageGalleryView from './panels/gallery-view'
 import EmbedlyView from './panels/embedly-view'
+import FacebookView from './panels/facebook-view'
 
 import ProgressView from './progress'
 
@@ -56,6 +57,9 @@ export default class Router extends Backbone.Router {
         break
       case 'externer inhalt':
         newView = new EmbedlyView({ model: model })
+        break
+      case 'facebook image posts':
+        newView = new FacebookView({ model: model })
         break
       default:
         console.warn('no template defined for', model.get('type'))
