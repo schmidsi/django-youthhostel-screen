@@ -14,12 +14,12 @@ from newswall.models import Source
 
 class AnnouncementContent(models.Model):
     announcement = models.CharField('Announcement', max_length=200)
-    
+
     class Meta:
         abstract = True
         verbose_name = u'Ankündigung'
         verbose_name_plural = u'Ankündigungen'
-    
+
     def render(self, **kwargs):
         return render_to_string('content/announcements/default.html', {'content' : self})
 
@@ -81,4 +81,16 @@ class FacebookImagePostsContent(models.Model):
 
     def render(self, **kwargs):
         return render_to_string('content/facebook/default.html', {'content' : self})
+
+
+class WeatherContent(models.Model):
+    location = models.CharField(max_length=100, blank=True, help_text="Falls leer wird der Ort der Seite genommen")
+
+    class Meta:
+        abstract = True
+        verbose_name = _('Weather Panel')
+        verbose_name_plural = _('Weather Panel')
+
+    def render(self, **kwargs):
+        return "RENDER IN FRONTEND"
 

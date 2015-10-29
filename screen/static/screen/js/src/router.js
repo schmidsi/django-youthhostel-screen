@@ -8,6 +8,7 @@ import ImageGalleryView from './panels/gallery-view'
 import EmbedlyView from './panels/embedly-view'
 import FacebookView from './panels/facebook-view'
 import NewsView from './panels/news-view'
+import WeatherView from './panels/weather-view'
 
 import ProgressView from './progress'
 
@@ -66,6 +67,9 @@ export default class Router extends Backbone.Router {
         break
       case 'news panel':
         this.newView = new NewsView({ model: model })
+        break
+      case 'weather panel':
+        this.newView = new WeatherView({ model: model })
         break
       default:
         console.warn('no template defined for', model.get('type'))

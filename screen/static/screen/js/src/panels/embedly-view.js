@@ -41,18 +41,26 @@ export default class EmbedlyView extends PanelBaseView {
 
     this.$el.html(this.template(this.data))
 
-    this.player = new playerjs.Player(this.$('iframe.embedly-embed')[0])
-    this.player.mute()
+    this.$('iframe.embedly-embed').on('load', () => {
+      try {
+        this.player = new playerjs.Player(this.$('iframe.embedly-embed')[0])
+        this.player.mute()
 
-    this.player.on('ready', () => {
-      this.trigger('loaded')
+        this.player.on('ready', () => {
+          this.trigger('loaded')
+        })
+
+        this.player.on('timeupdate', (data) => {
+          this.trigger('progress', data.seconds / data.duration)
+        })
+
+        this.player.on('ended', () => this.trigger('finished'))
+      } catch (err) {
+        console.warn('error with player.js', err)
+        this.trigger('loaded')
+        this.updateProgressInterval = window.setInterval(() => this.updateProgress(), 1000)
+      }
     })
-
-    this.player.on('timeupdate', (data) => {
-      this.trigger('progress', data.seconds / data.duration)
-    })
-
-    this.player.on('ended', () => this.trigger('finished'))
 
     return this
   }

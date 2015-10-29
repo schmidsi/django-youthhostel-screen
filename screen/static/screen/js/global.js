@@ -15,14 +15,14 @@ $(function () {
   $.getJSON(url, options)
     .then(function (data, status, xhr) {
       if (!data.results || data.results.length === 0) {
-        console.warn('GEOCODE failed', window.ScreenData.location)
+        console.warn('GEOCODE failed', window.ScreenData.location, data, status, xhr)
         return false
       }
 
-      var location = data.results[0].geometry.location
+      window.ScreenData.latlng = data.results[0].geometry.location
       var url = 'https://api.forecast.io/forecast/d4c70212b090e44a4250da97aa6bb54f/'
 
-      url = url + location.lat + ',' + location.lng
+      url = url + window.ScreenData.latlng.lat + ',' + window.ScreenData.latlng.lng
 
       return $.ajax({
         type: 'GET',

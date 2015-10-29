@@ -304,3 +304,11 @@ div {
 .news-body p:last-of-type {
   margin-bottom: 0;
 }
+
+.weather-embed {
+  width: 80%;
+  height: 208px;
+  height: 13rem;
+  margin-left: -48px;
+  margin-left: -3rem;
+}

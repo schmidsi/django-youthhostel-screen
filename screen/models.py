@@ -11,7 +11,7 @@ from feincms_oembed.contents import OembedContent, FeedContent
 from mediavariations.contrib.feincms.extensions import variations
 
 from contents import AnnouncementContent, SimpleGalleryContent, \
-    TextContent, NewswallContent, FacebookImagePostsContent
+    TextContent, NewswallContent, FacebookImagePostsContent, WeatherContent
 from extensions import content_timing_extension, mediafile_cover_extension, \
     page_location
 
@@ -29,7 +29,8 @@ Page.register_templates({
     })
 
 content_timing_extension(RichTextContent, TextContent, MediaFileContent, OembedContent,
-    SimpleGalleryContent, AnnouncementContent, FacebookImagePostsContent, NewswallContent)
+    SimpleGalleryContent, AnnouncementContent, FacebookImagePostsContent, NewswallContent,
+    WeatherContent)
 
 Page.register_extensions(
     'feincms.module.extensions.changedate',
@@ -47,4 +48,5 @@ Page.create_content_type(SimpleGalleryContent, regions=('main',))
 Page.create_content_type(FacebookImagePostsContent, regions=('main',))
 Page.create_content_type(AnnouncementContent, regions=('announcements',))
 Page.create_content_type(NewswallContent, regions=('main',))
+Page.create_content_type(WeatherContent, regions=('main',))
 #Page.create_content_type(TemplateContent, regions=('main',))

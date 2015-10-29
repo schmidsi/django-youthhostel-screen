@@ -83,6 +83,13 @@
       </div>
     </script>
 
+    <script type="text/template" id="weather-template">
+      <iframe class="weather-embed"
+        type="text/html"
+        src="http://forecast.io/embed/#lat=<%= lat %>&lon=<%= lon %>&font=Arial&units=ca&text-color=white&color=#5d8dcb&hide-header=true">
+      </iframe>
+    </script>
+
     <script>
         window.ScreenData = {
             location: "{{ feincms_page.location }}",
@@ -137,6 +144,8 @@
 
                       {% elif content.Meta.verbose_name|lower == 'news panel' %}
                           ticker: {% ticker_combined request "main" feincms_page 1 %},
+                      {% elif content.Meta.verbose_name|lower == 'weather panel' %}
+                          location: '{{ content.location }}',
                       {% endif %}
                     },
 
