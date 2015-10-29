@@ -52,6 +52,8 @@ export default class EmbedlyView extends PanelBaseView {
       this.trigger('progress', data.seconds / data.duration)
     })
 
+    this.player.on('ended', () => this.trigger('finished'))
+
     return this
   }
 

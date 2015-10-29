@@ -46,8 +46,6 @@ export default class ImageGalleryView extends PanelBaseView {
   updateProgress () {
     this.remaining--
     let progress = 1 - (this.remaining / (GALLERY_INTERVAL / 1000))
-
-    console.log(progress)
     this.trigger('progress', progress)
   }
 
