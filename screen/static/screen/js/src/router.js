@@ -17,11 +17,12 @@ export default class Router extends Backbone.Router {
     super(options)
 
     this.routes = {
-      ':panel': 'showPanel',
-      '*path': 'default'
+      ':panel': 'showPanelByIndex',
+      '*path': 'showRandomPanel'
     }
 
     this.panels = options.panels
+    this.announcements = options.announcements
     this.panelIndex = 0
 
     this._bindRoutes()
@@ -34,20 +35,20 @@ export default class Router extends Backbone.Router {
     this.started = true
   }
 
-  default () {
-    this.navigate('0', { trigger: true })
-  }
-
-  showPanel (panelIndex = 0) {
+  showPanelByIndex (panelIndex = 0) {
     this.panelIndex = parseInt(panelIndex, 10) % (this.panels.length)
 
     while (this.panelIndex < 0) {
       this.panelIndex = this.panels.length - panelIndex - 2
     }
 
-    this.navigate(this.panelIndex.toString())
-
     let model = this.panels.at(this.panelIndex)
+
+    this.showPanel(model)
+  }
+
+  showPanel (model) {
+    this.navigate(this.panels.indexOf(model).toString())
 
     switch (model.get('type')) {
       case 'text':
@@ -90,7 +91,7 @@ export default class Router extends Backbone.Router {
 
   bindNewView () {
     this.newView.on('progress', this.progress.update.bind(this.progress))
-    this.newView.on('finished', this.next.bind(this))
+    this.newView.on('finished', this.showRandomPanel.bind(this))
     this.newView.on('loaded', this.progress.reset.bind(this.progress))
   }
 
@@ -98,6 +99,10 @@ export default class Router extends Backbone.Router {
     this.newView.off('progress')
     this.newView.off('finished')
     this.newView.off('loaded')
+  }
+
+  showRandomPanel () {
+    this.showPanel(this.panels.getRandomized())
   }
 
   next () {
