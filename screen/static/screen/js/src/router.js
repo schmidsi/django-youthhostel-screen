@@ -121,13 +121,17 @@ export default class Router extends Backbone.Router {
 
   startStop () {
     if (this.started) {
-      this.progress.reset()
-      this.started = false
-      this.unbindNewView()
+      this.stop()
     } else {
       this.started = true
       this.bindNewView()
     }
+  }
+
+  stop () {
+    this.progress.reset()
+    this.started = false
+    this.unbindNewView()
   }
 }
 

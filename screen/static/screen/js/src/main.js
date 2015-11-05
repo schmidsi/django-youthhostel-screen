@@ -40,4 +40,13 @@ $(() => {
       router.showRandomPanel()
     }
   })
+
+  // stop all if doc is hidden, reload on focus
+  $(document).on('visibilitychange', (e) => {
+    if (document.hidden) {
+      router.stop()
+    } else {
+      window.location.reload()
+    }
+  })
 })
