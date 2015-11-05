@@ -129,6 +129,10 @@ div {
     width: 0;
 }
 
+#announcements div {
+  min-height: 2.4em;
+}
+
 #clock {
   position: relative;
   top: 0.5rem;
