@@ -9,6 +9,16 @@ const ITEM_INTERVAL = 10000
 const ITEMS_PER_PANEL = 10
 const FADE_DURATION = 2000
 
+let NewsItemModel = Backbone.Model.extend({
+  defaults: {
+    title: '',
+    body: '',
+    source: '',
+    timestamp: '',
+    author: ''
+  }
+})
+
 class NewsItemView extends Backbone.View {
   constructor (options) {
     super(options)
@@ -81,7 +91,7 @@ export default class NewsView extends PanelBaseView {
 
   renderNextItem () {
     this.nextItemView = new NewsItemView({
-      model: new Backbone.Model(this.ticker[ this.currentItemIndex ])
+      model: new NewsItemModel(this.ticker[ this.currentItemIndex ])
     })
 
     this.$el.append(this.nextItemView.render().el)
