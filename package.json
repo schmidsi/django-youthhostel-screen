@@ -2,7 +2,7 @@
   "author": "Simon Schmid <simon@schmidsi.ch> (https://github.com/schmidsi)",
   "name": "django-youthhostel-screen",
   "description": "helpers for frontend dev",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "http://youthhostel-screen.herokuapp.com",
   "repository": {
     "type": "git",
