@@ -48,7 +48,9 @@ export default class Router extends Backbone.Router {
   }
 
   showPanel (model) {
-    this.navigate(this.panels.indexOf(model).toString())
+    this.currentModel = model
+    this.panelIndex = this.panels.indexOf(model)
+    this.navigate(this.panelIndex.toString())
 
     switch (model.get('type')) {
       case 'text':
@@ -102,7 +104,7 @@ export default class Router extends Backbone.Router {
   }
 
   showRandomPanel () {
-    this.showPanel(this.panels.getRandomized())
+    this.showPanel(this.panels.getRandomized(this.currentModel))
   }
 
   next () {

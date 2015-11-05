@@ -43,11 +43,13 @@ export class ScreenCollection extends Backbone.Collection {
     }
   }
 
-  getRandomized (currentIndex) {
+  getRandomized (currentModel) {
     let filter = {}
     filter[this.getTimeslot()] = true
 
-    let timeslotted = this.where(filter)
+    let timeslotted = _.reject(this.where(filter), (item) => {
+      return item.get('ordering') === currentModel.get('ordering')
+    })
 
     let prioritySum = _.reduce(timeslotted, (memo, panel, index) => {
       return memo + panel.get('priority')
