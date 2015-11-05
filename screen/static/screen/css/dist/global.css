@@ -111,6 +111,10 @@ div {
   background-color: rgb(80, 145, 205);
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
 /* announcements */
 
 #announcements {

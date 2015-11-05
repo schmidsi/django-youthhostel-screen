@@ -2,6 +2,7 @@ import $ from 'jquery'
 import Backbone from 'backbone'
 
 import { Panels, Announcements } from './panels/base-model'
+import AnnouncementsView from './announcements'
 import Router from './router'
 
 window.jQuery = window.$ = $
@@ -18,6 +19,13 @@ $(() => {
     panels: panels,
     announcements: announcements
   })
+
+  let announcementsView = new AnnouncementsView({
+    el: $('[data-hook~=announcements]').get(),
+    collection: announcements
+  })
+
+  announcementsView.render()
 
   Backbone.history.start()
 

@@ -94,6 +94,10 @@ div {
   background-color: var(--accent-color);
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
 /* announcements */
 
 #announcements {

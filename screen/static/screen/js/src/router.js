@@ -1,6 +1,8 @@
 import $ from 'jquery'
 import Backbone from 'backbone'
 
+import { Panel } from './panels/base-model'
+
 import PanelBaseView from './panels/base-view'
 import TextPanelView from './panels/text-view'
 import MediaPanelView from './panels/media-view'
@@ -28,8 +30,10 @@ export default class Router extends Backbone.Router {
     this._bindRoutes()
 
     this.$hook = $('[data-hook~=panel-hook]')
-    this.currentView = new PanelBaseView()
-    this.newView = new PanelBaseView()
+
+    this.currentPanel = new Panel()
+    this.currentView = new PanelBaseView({ model: this.currentPanel })
+    this.newView = new PanelBaseView({ model: this.currentPanel })
     this.progress = new ProgressView({ el: $('[data-hook~=progress]').get() })
 
     this.started = true
@@ -48,7 +52,7 @@ export default class Router extends Backbone.Router {
   }
 
   showPanel (model) {
-    this.currentModel = model
+    this.currentPanel = model
     this.panelIndex = this.panels.indexOf(model)
     this.navigate(this.panelIndex.toString())
 
@@ -104,7 +108,7 @@ export default class Router extends Backbone.Router {
   }
 
   showRandomPanel () {
-    this.showPanel(this.panels.getRandomized(this.currentModel))
+    this.showPanel(this.panels.getRandomized(this.currentPanel))
   }
 
   next () {

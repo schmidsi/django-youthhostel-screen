@@ -4,7 +4,7 @@ import Backbone from 'backbone'
 export let Panel = Backbone.Model.extend({
   defaults: {
     type: 'undefined',
-    ordering: 0,
+    ordering: -1,
     priority: 0,
     morning: false,
     noon: false,
