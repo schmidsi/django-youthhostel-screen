@@ -49,4 +49,21 @@ $(() => {
       window.location.reload()
     }
   })
+
+  window.setInterval(() => {
+    $.getJSON('/ajax/modified/', {
+      page_id: window.ScreenData.page_id,
+      last_modified: window.ScreenData.last_modified
+    })
+    .then((changed) => {
+      if (changed) {
+        window.location = window.location.pathname
+      }
+    })
+  }, 1000)
+
+  // autoreload every 12h
+  window.setTimeout(() => {
+    window.location = window.location.pathname
+  }, 1000 * 60 * 60 * 12)
 })

@@ -110,6 +110,8 @@
     <script>
         window.ScreenData = {
             location: "{{ feincms_page.location }}",
+            page_id: {{ feincms_page.id }},
+            last_modified: '{{ feincms_page.modification_date|date:"c" }}',
             main: [
                 {% for content in feincms_page.content.main %}
                 {
