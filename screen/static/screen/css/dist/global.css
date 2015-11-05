@@ -142,8 +142,8 @@ div {
 #announcements:after {
     content: "";
     position: absolute;
-    bottom: -16px;
-    bottom: -1rem;
+    bottom: -15px;
+    bottom: -0.95rem;
     left: 32px;
     left: 2rem;
     border-width: 16px 16px 0;
