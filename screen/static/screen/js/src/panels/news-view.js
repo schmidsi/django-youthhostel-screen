@@ -39,14 +39,14 @@ class NewsItemView extends Backbone.View {
       element: this.el,
       values: {
         opacity: 0,
-        y: '-100px'
+        x: '300px'
       }
     })
 
     this.actor.start(new ui.Tween({
       values: {
         opacity: 1,
-        y: 0
+        x: 0
       },
       duration: FADE_DURATION
     }))
@@ -60,7 +60,7 @@ class NewsItemView extends Backbone.View {
       this.actor.start(new ui.Tween({
         values: {
           opacity: 0,
-          y: '5rem'
+          x: '-5rem'
         },
         duration: FADE_DURATION
       })).then(() => super.remove())
