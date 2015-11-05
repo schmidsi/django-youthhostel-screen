@@ -88,6 +88,13 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 
+ROLLBAR = {
+    'access_token': os.environ.get('ROLLBAR_ACCESS_TOKEN', ''),
+    'environment': 'development' if DEBUG else 'production',
+    'branch': 'master',
+    'root': APP_BASEDIR,
+}
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -103,6 +110,7 @@ MIDDLEWARE_CLASSES = (
     #'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 
     'django.middleware.locale.LocaleMiddleware',
+    #'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
