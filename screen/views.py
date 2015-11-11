@@ -107,8 +107,6 @@ def weather(request):
 
 
 def modified(request):
-    print 'asdf'
-
     page_id = request.GET.get('page_id', 0)
     page = Page.objects.get(pk=page_id)
     live_revision = request.GET.get('last_modified', '2000-11-05 18:59:00.54936+00')
